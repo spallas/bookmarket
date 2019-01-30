@@ -12,4 +12,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="complete_profile">Ci servono le ultime informazioni su di te, scegli un username obbligatorio
+        e sarai pronto a immergerti nel fantastico mondo di BookMarket</string>
+    <string name="welcome"> Benvenuto!</string>
+    <string name="username">Username</string>
+    <string name="save">Salva</string>
 </resources>

@@ -26,7 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
 
         Call<List<BMUser>> call = apiEndpoint.allUsers(/*give user id to api path*/ );
-
+/*
         call.enqueue(new Callback<List<BMUser>>() {
             @Override
             public void onResponse(Call<List<BMUser>> call, Response<List<BMUser>> response) {
@@ -43,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT)
                         .show();
             }
-        });
+        }); */
     }
 
 }
