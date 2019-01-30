@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:text="HOME"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="325dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="168dp"
+            android:layout_marginEnd="8dp"
+            android:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView">
+
+            <requestFocus />
+        </SearchView>
+
+        <Button
+            android:id="@+id/sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="128dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/search" />
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
