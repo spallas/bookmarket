@@ -33,12 +33,5 @@ dependencies {
     // Required only if Facebook login support is required
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
     implementation 'com.facebook.android:facebook-android-sdk:4.18.0'
-
-    // APIs
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-
-    implementation 'com.squareup.retrofit2:converter-moshi:2.5.0'
-
 }
-
 apply plugin: 'com.google.gms.google-services'
