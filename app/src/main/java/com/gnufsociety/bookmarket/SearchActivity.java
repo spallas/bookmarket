@@ -3,11 +3,11 @@ package com.gnufsociety.bookmarket;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.gnufsociety.bookmarket.models.Ad;
@@ -39,6 +39,12 @@ public class SearchActivity extends AppCompatActivity {
             query_text = intent.getStringExtra(SearchManager.QUERY);
         }
 
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_card_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+
         final String finalQuery = query_text;
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -48,12 +54,6 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         doSearch(query_text);
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_card_view);
-        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
@@ -68,7 +68,7 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         protected ArrayList<Ad> doInBackground(Void... params) {
             // TODO
-            return null;
+            return new ArrayList<>();
         }
 
         @Override

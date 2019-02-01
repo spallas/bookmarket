@@ -1,20 +1,14 @@
 package com.gnufsociety.bookmarket;
 
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.Context;
 import  android.net.Uri;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.SearchView;
-import android.widget.Toast;
 
-import com.gnufsociety.bookmarket.HomeFragment.OnFragmentInteractionListener;
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
 import com.gnufsociety.bookmarket.models.BMUser;
@@ -23,8 +17,6 @@ import com.pixelcan.inkpageindicator.InkPageIndicator;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeActivity extends FragmentActivity
         implements HomeFragment.OnFragmentInteractionListener,
