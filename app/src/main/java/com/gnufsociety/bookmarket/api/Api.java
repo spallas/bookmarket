@@ -9,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
  */
 public class Api {
     private static final Api ourInstance = new Api();
-    private static final String BASE_URL = "http://bookmarket.servebeer.com:20801/";
+    private static final String BASE_URL = "http://bookmarket.servebeer.com:80/";
     private final BookmarketEndpoints apiEndpoint;
 
     private Api() {

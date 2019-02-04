@@ -16,14 +16,16 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SellActivity"></activity>
         <activity android:name=".AdActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".HomeActivity">
+
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
 
+        <activity android:name=".HomeActivity">
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchActivity" />
