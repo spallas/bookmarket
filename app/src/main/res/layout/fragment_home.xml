@@ -36,7 +36,7 @@
         </SearchView>
 
         <Button
-            android:id="@+id/sell"
+            android:id="@+id/sell_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

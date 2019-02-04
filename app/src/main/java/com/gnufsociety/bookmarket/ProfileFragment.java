@@ -4,9 +4,26 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.gnufsociety.bookmarket.adapters.MyCardAdapter;
+import com.gnufsociety.bookmarket.api.Api;
+import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
+import com.gnufsociety.bookmarket.models.Ad;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +45,10 @@ public class ProfileFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    public MyCardAdapter adapter;
+
+    @BindView(R.id.my_ads_recycler) RecyclerView myAdsRecycler;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -64,7 +85,32 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        ButterKnife.bind(this, rootView);
+        BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
+
+        Call<List<Ad>> call = apiEndpoint.getMyAds();  // reference to this user in the auth header
+
+        call.enqueue(new Callback<List<Ad>>() {
+            @Override
+            public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
+                ArrayList<Ad> myAds = (ArrayList<Ad>) response.body();
+                adapter = new MyCardAdapter(myAds);
+                myAdsRecycler.setAdapter(adapter);
+                myAdsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Ad>> call, Throwable t) {
+                Toast.makeText(getActivity(),
+                        "Something went wrong...Error message: " + t.getMessage(),
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

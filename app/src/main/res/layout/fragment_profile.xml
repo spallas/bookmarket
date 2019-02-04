@@ -14,12 +14,11 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_ads"
+        android:id="@+id/my_ads_recycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scrollbars="vertical"
         android:background="@android:color/darker_gray">
-
-
 
     </androidx.recyclerview.widget.RecyclerView>
 

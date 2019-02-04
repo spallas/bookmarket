@@ -1,23 +1,25 @@
-package com.gnufsociety.bookmarket; /**
- * Created by spallas on 30/01/2019.
- */
+package com.gnufsociety.bookmarket.adapters;
+
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gnufsociety.bookmarket.R;
 import com.gnufsociety.bookmarket.models.Ad;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 
-
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
+/**
+ * Created by spallas on 04/02/2019.
+ */
+public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHolder> {
 
     public List<Ad> list;
-    public CardAdapter(List<Ad> list) {
+    public MyCardAdapter(List<Ad> list) {
         this.list = list;
 //        fstorage = FirebaseStorage.getInstance();
 //        storage = fstorage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
@@ -26,8 +28,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,
-                                                                     parent,
-                                                                    false);
+                parent,
+                false);
         return new CardViewHolder(view);
     }
 

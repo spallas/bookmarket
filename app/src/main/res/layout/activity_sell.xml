@@ -7,4 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".SellActivity">
 
+    <TextView
+        android:id="@+id/sell"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        android:text="SELL ACTIVITY"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.gnufsociety.bookmarket.adapters.MyCardAdapter;
 import com.gnufsociety.bookmarket.models.Ad;
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class SearchActivity extends AppCompatActivity {
 
     private BookmarketEndpoints apiEndpoint;
-    CardAdapter adapter;
+    MyCardAdapter adapter;
     RecyclerView recyclerView;
     SwipeRefreshLayout refreshLayout;
     private RecyclerView.Adapter mAdapter;
@@ -74,7 +75,7 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<Ad> ads) {
             super.onPostExecute(ads);
-            adapter = new CardAdapter(ads);
+            adapter = new MyCardAdapter(ads);
             recyclerView.setAdapter(adapter);
             refreshLayout.setRefreshing(false);
         }

@@ -42,27 +42,6 @@ public class HomeActivity extends FragmentActivity
         InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(viewPager);
 
-        BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
-
-        Call<List<BMUser>> call = apiEndpoint.allUsers(/*give user id to api path*/ );
-
-/*        call.enqueue(new Callback<List<BMUser>>() {
-            @Override
-            public void onResponse(Call<List<BMUser>> call, Response<List<BMUser>> response) {
-                Toast.makeText(HomeActivity.this,
-                        response.body().get(this_user_id).user_id,
-                        Toast.LENGTH_SHORT);
-
-            }
-
-            @Override
-            public void onFailure(Call<List<BMUser>> call, Throwable t) {
-                Toast.makeText(HomeActivity.this,
-                        "Something went wrong...Error message: " + t.getMessage(),
-                        Toast.LENGTH_SHORT)
-                        .show();
-            }
-        });*/
     }
 
     @Override
@@ -91,7 +70,7 @@ public class HomeActivity extends FragmentActivity
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return ProfileFragment.newInstance("Profile", "Page # 1");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return HomeFragment.newInstance("Home", "Page # 2");
+                    return HomeFragment.newInstance();
                 case 2: // Fragment # 1 - This will show SecondFragment
                     return ChatFragment.newInstance("Chat", "Page # 3");
                 default:
