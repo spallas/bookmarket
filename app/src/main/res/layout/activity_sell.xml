@@ -11,10 +11,60 @@
         android:id="@+id/sell"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="4dp"
         android:text="SELL ACTIVITY"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/edit_ad_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:layout_constraintTop_toTopOf="@+id/sell"
+        tools:layout_editor_absoluteX="0dp"
+        android:hint="Title of the ad..."/>
+
+    <EditText
+        android:id="@+id/edit_ad_subj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ad_title"
+        tools:layout_editor_absoluteX="0dp"
+        android:hint="Subject..."/>
+
+    <EditText
+        android:id="@+id/edit_ad_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ad_subj"
+        tools:layout_editor_absoluteX="0dp"
+        android:hint="Description..."/>
+
+    <ImageView
+        android:id="@+id/add_ad_img"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="72dp"
+        android:src="@drawable/upload_img"
+        app:layout_constraintEnd_toEndOf="@+id/sell"
+        app:layout_constraintStart_toStartOf="@+id/sell"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ad_desc" />
+
+    <Button
+        android:id="@+id/add_ad_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:text="ADD"
+        app:layout_constraintEnd_toEndOf="@+id/sell"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="@+id/sell"
+        app:layout_constraintTop_toBottomOf="@+id/add_ad_img" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

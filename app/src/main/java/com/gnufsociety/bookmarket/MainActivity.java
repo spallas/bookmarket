@@ -62,38 +62,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN){
             if (resultCode == RESULT_OK){
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                setContentView(R.layout.activity_main);
-
-                Button save_btn = findViewById(R.id.complete_btn);
-
-                save_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        EditText username_edit = findViewById(R.id.edit_username);
-                        String username = username_edit.getText().toString();
-                        if (username.equals("")){
-                            Toast.makeText(MainActivity.this, "Username non può essere vuoto", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            CompleteProfile prof = new CompleteProfile(username);
-                            apiEndpoint.completeProfile(prof).enqueue(new Callback<Void>() {
-                                @Override
-                                public void onResponse(Call<Void> call, Response<Void> response) {
-                                    if (response.code() == 201){
-                                        Toast.makeText(MainActivity.this, "Profilo completo!", Toast.LENGTH_SHORT).show();
-                                        startActivity(intent);
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<Void> call, Throwable t) {
-
-                                }
-                            });
-                        }
-
-                    }
-                });
 
 
                 apiEndpoint.existUser().enqueue(new Callback<Void>() {
@@ -101,6 +69,40 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.code() == 200)
                             startActivity(intent);
+                        else if (response.code() == 401) {
+                            setContentView(R.layout.activity_main);
+
+                            Button save_btn = findViewById(R.id.complete_btn);
+
+                            save_btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    EditText username_edit = findViewById(R.id.edit_username);
+                                    String username = username_edit.getText().toString();
+                                    if (username.equals("")){
+                                        Toast.makeText(MainActivity.this, "Username non può essere vuoto", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        CompleteProfile prof = new CompleteProfile(username);
+                                        apiEndpoint.completeProfile(prof).enqueue(new Callback<Void>() {
+                                            @Override
+                                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                                if (response.code() == 201){
+                                                    Toast.makeText(MainActivity.this, "Profilo completo!", Toast.LENGTH_SHORT).show();
+                                                    startActivity(intent);
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<Void> call, Throwable t) {
+
+                                            }
+                                        });
+                                    }
+
+                                }
+                            });
+                        }
                     }
 
                     @Override
