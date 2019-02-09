@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
         <activity android:name=".SellActivity" />
         <activity android:name=".AdActivity" />
         <activity android:name=".MainActivity">
