@@ -85,7 +85,7 @@ public class ChatFragment extends Fragment {
 
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("users").child(uid).orderByChild("timestamp")
+                .child("users").child(uid).child("chats").orderByChild("timestamp")
                 .limitToFirst(50);
 
         SnapshotParser<Chat> parser = new SnapshotParser<Chat>() {
@@ -95,7 +95,7 @@ public class ChatFragment extends Fragment {
                 Chat chat = snapshot.getValue(Chat.class);
                 if (chat == null)
                     return new Chat();
-                chat.setId(snapshot.getKey());
+                chat.setChat_id(snapshot.getKey());
                 return chat;
             }
         };

@@ -12,7 +12,6 @@ public class Chat {
     private String name;
     private String chat_id;
     private Long timestamp;
-    private String id;
 
     public Chat() {
     }
@@ -21,14 +20,6 @@ public class Chat {
         this.name = name;
         this.chat_id = chat_id;
         this.timestamp = timestamp;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Long getTimestamp() {

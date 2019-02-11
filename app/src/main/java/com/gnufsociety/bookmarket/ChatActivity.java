@@ -48,9 +48,9 @@ public class ChatActivity extends AppCompatActivity {
 
     @OnClick(R.id.send_btn)
     public void sendMessage(View view){
+
         String message = messageEdit.getText().toString();
         if (!message.equals("")){
-            Toast.makeText(view.getContext(), "Ma vaffanculo", Toast.LENGTH_SHORT).show();
             Message msg = new Message(Calendar.getInstance().getTimeInMillis(), message, FirebaseAuth.getInstance().getCurrentUser().getUid());
 
             dbReference.child("chats").child(chat_id).push().setValue(msg);
@@ -68,9 +68,6 @@ public class ChatActivity extends AppCompatActivity {
         user_chat = intent.getStringExtra("user_chat");
 
         ButterKnife.bind(this);
-
-        Toast.makeText(this, user_chat, Toast.LENGTH_LONG).show();
-
 
         this.dbReference = FirebaseDatabase.getInstance().getReference();
 

@@ -2,6 +2,7 @@ package com.gnufsociety.bookmarket;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,12 +12,18 @@ import com.firebase.ui.auth.AuthUI;
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
 import com.gnufsociety.bookmarket.models.CompleteProfile;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         createSignInIntent();
 
     }
@@ -37,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
     public void createSignInIntent() {
         // Choose authentication providers
         List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build());
-                //new AuthUI.IdpConfig.GoogleBuilder().build());
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
 
         // Create and launch sign-in intent
         startActivityForResult(
@@ -62,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN){
             if (resultCode == RESULT_OK){
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                setupFCM(user.getUid());
                 setContentView(R.layout.activity_main);
 
                 Button save_btn = findViewById(R.id.complete_btn);
@@ -125,6 +134,24 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // HANDLE ERRORS HERE???? che ce frega a noi!
         }
+    }
+
+    private void setupFCM(String uid){
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+
+                        String token = task.getResult().getToken();
+
+                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("fcm_token").setValue(token);
+
+
+                        Log.d("TAGG", "token fcm: "+token);
+
+                        Toast.makeText(MainActivity.this, "TOKEN "+token, Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }
 
