@@ -34,16 +34,17 @@
         </activity>
         <activity android:name=".SellActivity" />
         <activity android:name=".AdActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".CompleteActivity">
+
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".HomeActivity"
-            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchActivity" />

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,8 +80,10 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.sell_btn)
     public void startSellActivity() {
-        Intent intent = new Intent(getActivity(), SellActivity.class);
-        startActivity(intent);
+
+        FirebaseAuth.getInstance().signOut();
+        //Intent intent = new Intent(getActivity(), SellActivity.class);
+        //startActivity(intent);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
