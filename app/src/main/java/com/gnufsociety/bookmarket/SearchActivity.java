@@ -60,24 +60,8 @@ public class SearchActivity extends AppCompatActivity {
 
     public void doSearch(String query) {
         Toast.makeText(getBaseContext(), query, Toast.LENGTH_LONG).show();
-        SearchAsync async = new SearchAsync();
-        async.execute();
+
     }
 
-    public class SearchAsync extends AsyncTask<Void, Void, ArrayList<Ad>> {
 
-        @Override
-        protected ArrayList<Ad> doInBackground(Void... params) {
-            // TODO
-            return new ArrayList<>();
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Ad> ads) {
-            super.onPostExecute(ads);
-            adapter = new MyCardAdapter(ads);
-            recyclerView.setAdapter(adapter);
-            refreshLayout.setRefreshing(false);
-        }
-    }
 }

@@ -80,10 +80,8 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.sell_btn)
     public void startSellActivity() {
-
-        FirebaseAuth.getInstance().signOut();
-        //Intent intent = new Intent(getActivity(), SellActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(getActivity(), SellActivity.class);
+        startActivity(intent);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
