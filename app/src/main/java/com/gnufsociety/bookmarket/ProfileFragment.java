@@ -40,8 +40,8 @@ import java.util.List;
  */
 public class ProfileFragment extends Fragment {
 
+    private BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
     private OnFragmentInteractionListener mListener;
-
     public MyCardAdapter adapter;
 
     @BindView(R.id.signout_btn) Button logoutBtn;
@@ -72,11 +72,8 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, rootView);
-        BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
 
-        Call<List<Ad>> call = apiEndpoint.getMyAds();  // reference to this user in the auth header
-
-        call.enqueue(new Callback<List<Ad>>() {
+        apiEndpoint.getMyAds().enqueue(new Callback<List<Ad>>() {
             @Override
             public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
                 ArrayList<Ad> myAds = (ArrayList<Ad>) response.body();

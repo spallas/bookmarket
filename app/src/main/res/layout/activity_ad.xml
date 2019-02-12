@@ -7,4 +7,83 @@
     android:layout_height="match_parent"
     tools:context=".AdActivity">
 
+    <TextView
+        android:id="@+id/sell"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="AD ACTIVITY"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/ad_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="Title"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="@+id/sell"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/ad_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Authors"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/ad_title" />
+
+    <TextView
+        android:id="@+id/ad_subj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Subject"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/ad_author" />
+
+    <TextView
+        android:id="@+id/ad_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Description"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/ad_subj" />
+
+    <TextView
+        android:id="@+id/ad_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Price"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/ad_desc" />
+
+    <Button
+        android:id="@+id/contact_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Contact Owner"
+        app:layout_constraintEnd_toEndOf="@+id/sell"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ad_price" />
+
+    <Button
+        android:id="@+id/amzn_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="See on Amazon"
+        app:layout_constraintEnd_toEndOf="@+id/sell"
+        app:layout_constraintStart_toStartOf="@+id/sell"
+        app:layout_constraintTop_toBottomOf="@+id/contact_btn" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

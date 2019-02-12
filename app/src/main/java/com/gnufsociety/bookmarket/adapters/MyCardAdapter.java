@@ -22,7 +22,7 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
     public MyCardAdapter(List<Ad> list) {
         this.list = list;
 //        fstorage = FirebaseStorage.getInstance();
-//        storage = fstorage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
+//        storage = fstorage.getReferenceFromUrlx("gs://openchallenge-81990.appspot.com");
     }
 
     @Override

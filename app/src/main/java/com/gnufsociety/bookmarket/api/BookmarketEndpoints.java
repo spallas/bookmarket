@@ -30,13 +30,13 @@ public interface BookmarketEndpoints {
     @POST("users/complete")
     Call<Void> completeProfile(@Body CompleteProfile body);
 
-    @GET("ads/{id}")
+    @GET("ad/{id}")
     Call<Ad> getAd(@Path("id") String adID);
 
     @POST("ads/")
     Call<Void> createAd(@Body AdPostInfo adInfo);
 
-    @DELETE("ads/{id}")
+    @DELETE("ad/{id}")
     Call<Void> deleteAd(@Path("id") String adID);
 
     @GET("ads/")
