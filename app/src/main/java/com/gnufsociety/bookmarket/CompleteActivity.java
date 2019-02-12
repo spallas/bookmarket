@@ -2,6 +2,7 @@ package com.gnufsociety.bookmarket;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,18 +21,18 @@ import retrofit2.Response;
 
 public class CompleteActivity extends AppCompatActivity {
 
-    private static final int RC_SIGN_IN = 123;
-
     private BookmarketEndpoints apiEndpoints;
 
     @BindView(R.id.complete_btn)
     Button complete_btn;
 
+    @BindView(R.id.edit_username)
+    EditText userEdit;
+
 
     @OnClick(R.id.complete_btn)
     public void onCompleteBtnClick() {
-        EditText username_edit = findViewById(R.id.edit_username);
-        String username = username_edit.getText().toString();
+        String username = userEdit.getText().toString();
         if (username.equals("")) {
             Toast.makeText(CompleteActivity.this, "Username non può essere vuoto", Toast.LENGTH_SHORT).show();
         } else {
@@ -50,7 +51,7 @@ public class CompleteActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-
+                    Log.e("Complete Profile", t.getMessage());
                 }
             });
         }
