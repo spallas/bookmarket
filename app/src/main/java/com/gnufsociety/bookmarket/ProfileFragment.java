@@ -14,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,15 +73,20 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, rootView);
-
+        Log.w("PROFILE MY ADS", "Creating View");
         apiEndpoint.getMyAds().enqueue(new Callback<List<Ad>>() {
             @Override
             public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
-                ArrayList<Ad> myAds = (ArrayList<Ad>) response.body();
-                adapter = new MyCardAdapter(myAds);
-                myAdsRecycler.setAdapter(adapter);
-                myAdsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
+                Log.e("PROFILE MY ADS", Utils.bodyToString(call.request()));
+                if (response.code() == 201) {
+                    Toast.makeText(getContext(), "Returning your ads!", Toast.LENGTH_SHORT).show();
+                    ArrayList<Ad> myAds = (ArrayList<Ad>) response.body();
+                    adapter = new MyCardAdapter(myAds);
+                    myAdsRecycler.setAdapter(adapter);
+                    myAdsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                } else {
+                    Toast.makeText(getContext(), " ERROR! " + response.code(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

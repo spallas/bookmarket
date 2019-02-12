@@ -8,6 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import android.util.Log;
 import android.widget.Toast;
 
 import com.gnufsociety.bookmarket.adapters.MyCardAdapter;
@@ -16,22 +23,22 @@ import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
-    private BookmarketEndpoints apiEndpoint;
+    private BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
     MyCardAdapter adapter;
-    RecyclerView recyclerView;
-    SwipeRefreshLayout refreshLayout;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    @BindView(R.id.recycler_card_view) RecyclerView recyclerView;
+    @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        ButterKnife.bind(this);
 
-        apiEndpoint = Api.getInstance().getApiEndpoint();
         String query_text = "";
 
         // Get the intent, verify the action and get the query_text
@@ -40,11 +47,8 @@ public class SearchActivity extends AppCompatActivity {
             query_text = intent.getStringExtra(SearchManager.QUERY);
         }
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_card_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
 
         final String finalQuery = query_text;
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -60,7 +64,26 @@ public class SearchActivity extends AppCompatActivity {
 
     public void doSearch(String query) {
         Toast.makeText(getBaseContext(), query, Toast.LENGTH_LONG).show();
+        apiEndpoint.searchAds(query).enqueue(new Callback<List<Ad>>() {
+            @Override
+            public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
+                Log.e("SEARCH ADS", Utils.bodyToString(call.request()));
+                if (response.code() == 201) {
+                    Toast.makeText(SearchActivity.this, "Returning your ads!", Toast.LENGTH_SHORT).show();
+                    ArrayList<Ad> resultAds = (ArrayList<Ad>) response.body();
+                    adapter = new MyCardAdapter(resultAds);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+                } else {
+                    Toast.makeText(SearchActivity.this, " ERROR! " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<Ad>> call, Throwable t) {
+
+            }
+        });
     }
 
 

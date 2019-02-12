@@ -1,7 +1,6 @@
 package com.gnufsociety.bookmarket.api;
 
 import com.gnufsociety.bookmarket.models.Ad;
-import com.gnufsociety.bookmarket.models.AdPostInfo;
 import com.gnufsociety.bookmarket.models.BMUser;
 import com.gnufsociety.bookmarket.models.CompleteProfile;
 
@@ -21,9 +20,6 @@ import retrofit2.http.Query;
  */
 public interface BookmarketEndpoints {
 
-    @GET("users/")
-    Call<List<BMUser>> allUsers();
-
     @GET("users/exist")
     Call<Void> existUser();
 
@@ -34,12 +30,15 @@ public interface BookmarketEndpoints {
     Call<Ad> getAd(@Path("id") String adID);
 
     @POST("ads/")
-    Call<Void> createAd(@Body AdPostInfo adInfo);
+    Call<Void> createAd(@Body Ad ad);
 
     @DELETE("ad/{id}")
     Call<Void> deleteAd(@Path("id") String adID);
 
     @GET("ads/")
     Call<List<Ad>> getMyAds();
+
+    @GET("ads/{query}")
+    Call<List<Ad>> searchAds(@Path("query") String query);
 
 }

@@ -10,8 +10,65 @@
     card:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="TITLE"
+            card:layout_constraintStart_toStartOf="parent"
+            card:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/card_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="AUTHOR"
+            card:layout_constraintStart_toStartOf="parent"
+            card:layout_constraintTop_toBottomOf="@+id/card_title" />
+
+        <TextView
+            android:id="@+id/card_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="PRICE"
+            card:layout_constraintStart_toStartOf="parent"
+            card:layout_constraintTop_toBottomOf="@+id/card_author" />
+
+        <TextView
+            android:id="@+id/card_desc"
+            android:layout_width="151dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Description: questo libro è molto bello e ci ha studiato un ragazzo molto simpatico quindi compratelo"
+            card:layout_constraintBottom_toBottomOf="parent"
+            card:layout_constraintEnd_toStartOf="@+id/card_img"
+            card:layout_constraintTop_toTopOf="parent"
+            card:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/card_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/upload_img"
+            card:layout_constraintBottom_toBottomOf="parent"
+            card:layout_constraintEnd_toEndOf="parent"
+            card:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
