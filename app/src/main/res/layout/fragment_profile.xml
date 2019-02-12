@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView20"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="PROFILE"
@@ -21,16 +21,16 @@
             tools:layout_editor_absoluteY="100dp" />
 
         <Button
-            android:id="@+id/logout_btn"
+            android:id="@+id/signout_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="LOGOUT"
             app:layout_constraintBottom_toTopOf="@+id/my_ads_recycler"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
+            app:layout_constraintEnd_toEndOf="@+id/textView20"
+            app:layout_constraintStart_toStartOf="@+id/textView20"
+            app:layout_constraintTop_toTopOf="@+id/textView20" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_ads_recycler"
@@ -40,9 +40,9 @@
             android:layout_marginBottom="8dp"
             android:background="@android:color/darker_gray"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintBottom_toBottomOf="@+id/textView20"
+            app:layout_constraintEnd_toEndOf="@+id/textView20"
+            app:layout_constraintStart_toStartOf="@+id/textView20"
             app:layout_constraintTop_toTopOf="parent">
 
         </androidx.recyclerview.widget.RecyclerView>

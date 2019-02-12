@@ -1,6 +1,7 @@
 package com.gnufsociety.bookmarket;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -43,7 +44,7 @@ public class ProfileFragment extends Fragment {
 
     public MyCardAdapter adapter;
 
-    @BindView(R.id.logout_btn) Button logoutBtn;
+    @BindView(R.id.signout_btn) Button logoutBtn;
     @BindView(R.id.my_ads_recycler) RecyclerView myAdsRecycler;
 
     public ProfileFragment() {
@@ -98,9 +99,12 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    @OnClick(R.id.logout_btn)
+    @OnClick(R.id.signout_btn)
     public void logout() {
         FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        getActivity().finish();
+        startActivity(intent);
     }
 
 
