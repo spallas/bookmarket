@@ -77,7 +77,10 @@ public class CompleteActivity extends AppCompatActivity {
         } else {
 
             File file = new File(avatar.getPath());
+
             RequestBody requestAvatar = RequestBody.create(MediaType.parse("image/*"), file);
+
+
             MultipartBody.Part fileAvatar = MultipartBody.Part.createFormData("user[avatar]", file.getName(), requestAvatar);
 
             RequestBody requestUsername = RequestBody.create(MediaType.parse("text/plain"), username);

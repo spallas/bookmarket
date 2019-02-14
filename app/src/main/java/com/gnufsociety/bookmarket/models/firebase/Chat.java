@@ -12,14 +12,16 @@ public class Chat {
     private String name;
     private String chat_id;
     private Long timestamp;
+    private String uid;
 
     public Chat() {
     }
 
-    public Chat(String name, String chat_id, Long timestamp) {
+    public Chat(String name, String chat_id, Long timestamp, String uid) {
         this.name = name;
         this.chat_id = chat_id;
         this.timestamp = timestamp;
+        this.uid = uid;
     }
 
     public Long getTimestamp() {
@@ -28,6 +30,14 @@ public class Chat {
 
     public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {
