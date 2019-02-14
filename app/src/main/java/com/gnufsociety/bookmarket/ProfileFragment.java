@@ -77,7 +77,7 @@ public class ProfileFragment extends Fragment {
         apiEndpoint.getMyAds().enqueue(new Callback<List<Ad>>() {
             @Override
             public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
-                Log.e("PROFILE MY ADS", Utils.bodyToString(call.request()));
+                // Log.e("PROFILE MY ADS", Utils.bodyToString());
                 if (response.code() == 201) {
                     Toast.makeText(getContext(), "Returning your ads!", Toast.LENGTH_SHORT).show();
                     ArrayList<Ad> myAds = (ArrayList<Ad>) response.body();

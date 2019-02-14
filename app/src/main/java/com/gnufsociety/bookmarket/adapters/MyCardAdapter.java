@@ -45,7 +45,6 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
 
         holder.title.setText(ad.getBook().getTitle());
         holder.author.setText(ad.getBook().getAuthor());
-        holder.desc.setText(ad.getDescription());
         holder.price.setText(ad.getPrice());
 
 //        Glide.with(holder.desc.getContext())
@@ -65,7 +64,6 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
 
         @BindView(R.id.card_title)  TextView title;
         @BindView(R.id.card_author)  TextView author;
-        @BindView(R.id.card_desc)  TextView desc;
         @BindView(R.id.card_price) TextView price;
         @BindView(R.id.card_img) ImageView img;
 

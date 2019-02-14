@@ -38,24 +38,11 @@
             android:id="@+id/card_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
             android:text="PRICE"
-            card:layout_constraintStart_toStartOf="parent"
-            card:layout_constraintTop_toBottomOf="@+id/card_author" />
+            card:layout_constraintBottom_toTopOf="@+id/guideline3"
+            card:layout_constraintEnd_toStartOf="@+id/card_img" />
 
-        <TextView
-            android:id="@+id/card_desc"
-            android:layout_width="151dp"
-            android:layout_height="82dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="Description: questo libro è molto bello e ci ha studiato un ragazzo molto simpatico quindi compratelo"
-            card:layout_constraintBottom_toBottomOf="parent"
-            card:layout_constraintEnd_toStartOf="@+id/card_img"
-            card:layout_constraintTop_toTopOf="parent"
-            card:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/card_img"
@@ -69,6 +56,20 @@
             card:layout_constraintBottom_toBottomOf="parent"
             card:layout_constraintEnd_toEndOf="parent"
             card:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            card:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            card:layout_constraintGuide_percent=".75" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

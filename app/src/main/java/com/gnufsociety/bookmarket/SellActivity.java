@@ -60,7 +60,7 @@ public class SellActivity extends AppCompatActivity {
     @OnClick(R.id.add_ad_btn)
     public void postNewAd() {
 
-        storeImage();
+        // storeImage();
 
         Book book = new Book(editTitle.getText().toString(), editAuthor.getText().toString(), "");
         Ad ad = new Ad(book, editDesc.getText().toString(), Float.valueOf(editPrice.getText().toString()));
@@ -72,12 +72,13 @@ public class SellActivity extends AppCompatActivity {
                 Log.e("SELL ACTIVITY request", call.request().headers().toString());
                 if (response.code() == 201) {
                     Toast.makeText(SellActivity.this, "Ad created!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SellActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(SellActivity.this, HomeActivity.class);
+                    //startActivity(intent);
+                    finish();
                 } else if (response.code() == 401) {
                     Toast.makeText(SellActivity.this, "401 ERROR!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(SellActivity.this, " ERROR!" + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SellActivity.this, "SELL ERROR!" + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 

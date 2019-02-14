@@ -7,6 +7,7 @@ public class Ad {
 
     private AdInfo ad;
     private Book book;
+    private AdUser user;
 
     public Ad(Book book, String desc, Float price) {
         this.ad = new AdInfo(desc, price);
@@ -34,4 +35,19 @@ class AdInfo {
         this.price = price;
         this.description = description;
     }
+}
+
+
+class AdUser {
+    String username;
+    String avatar_url;
+    // String firebase_id;
+
+    public AdUser(String username, String avatar_url/*, String firebase_id*/) {
+        this.username = username;
+        this.avatar_url = avatar_url;
+        // this.firebase_id = firebase_id;
+    }
+
+
 }
