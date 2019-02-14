@@ -5,12 +5,13 @@ package com.gnufsociety.bookmarket.models;
  */
 public class Ad {
 
-    private AdInfo ad;
+    private String price, description, img_url;
     private Book book;
     private AdUser user;
 
     public Ad(Book book, String desc, Float price) {
-        this.ad = new AdInfo(desc, price);
+        this.price = "" + price;
+        this.description = desc;
         this.book = book;
     }
 
@@ -19,34 +20,27 @@ public class Ad {
     }
 
     public String getPrice() {
-        return "" + ad.price;
+        return "" + price;
     }
 
     public String getDescription() {
-        return ad.description;
+        return description;
+    }
+
+    public String getImgUrl() {
+        return img_url;
     }
 }
-
-class AdInfo {
-    Float price;
-    String description;
-
-    AdInfo(String description, Float price) {
-        this.price = price;
-        this.description = description;
-    }
-}
-
 
 class AdUser {
     String username;
     String avatar_url;
-    // String firebase_id;
+    String firebase_id;
 
     public AdUser(String username, String avatar_url/*, String firebase_id*/) {
         this.username = username;
         this.avatar_url = avatar_url;
-        // this.firebase_id = firebase_id;
+        this.firebase_id = firebase_id;
     }
 
 

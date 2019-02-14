@@ -78,7 +78,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
                 // Log.e("PROFILE MY ADS", Utils.bodyToString());
-                if (response.code() == 201) {
+                if (response.code() == 200) {
                     Toast.makeText(getContext(), "Returning your ads!", Toast.LENGTH_SHORT).show();
                     ArrayList<Ad> myAds = (ArrayList<Ad>) response.body();
                     adapter = new MyCardAdapter(myAds);

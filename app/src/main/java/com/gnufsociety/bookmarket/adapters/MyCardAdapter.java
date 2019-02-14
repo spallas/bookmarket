@@ -1,18 +1,20 @@
 package com.gnufsociety.bookmarket.adapters;
 
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gnufsociety.bookmarket.R;
 import com.gnufsociety.bookmarket.models.Ad;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -24,8 +26,6 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
     public List<Ad> list;
     public MyCardAdapter(List<Ad> list) {
         this.list = list;
-//        fstorage = FirebaseStorage.getInstance();
-//        storage = fstorage.getReferenceFromUrlx("gs://openchallenge-81990.appspot.com");
     }
 
     @Override
@@ -40,18 +40,14 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
     public void onBindViewHolder(CardViewHolder holder, int position) {
         Ad ad = list.get(position);
 
-//        StorageReference img = storage.child("challenges/"+ad.imageLocation);
-//        StorageReference userImg = storage.child("users/"+ad.organizer.proPicLocation);
-
         holder.title.setText(ad.getBook().getTitle());
         holder.author.setText(ad.getBook().getAuthor());
         holder.price.setText(ad.getPrice());
 
-//        Glide.with(holder.desc.getContext())
-//                .using(new FirebaseImageLoader())
-//                .load(img)
-//                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-//                .into(holder.img);
+        Log.e("PROFILE IMAGE URL", ad.getImgUrl());
+        Glide.with(holder.title.getContext())
+                .load(ad.getImgUrl())
+                .into(holder.img);
 
     }
 

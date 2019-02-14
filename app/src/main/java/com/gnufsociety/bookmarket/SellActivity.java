@@ -26,8 +26,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.zelory.compressor.Compressor;
 import id.zelory.compressor.FileUtil;
-import okhttp3.Request;
-import okio.Buffer;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,20 +61,28 @@ public class SellActivity extends AppCompatActivity {
     @OnClick(R.id.add_ad_btn)
     public void postNewAd() {
 
-        // storeImage();
+        File file = storeImage();
 
-        Book book = new Book(editTitle.getText().toString(), editAuthor.getText().toString(), "");
+        Book book = new Book(editTitle.getText().toString(), editAuthor.getText().toString(), "BOH");
         Ad ad = new Ad(book, editDesc.getText().toString(), Float.valueOf(editPrice.getText().toString()));
 
-        apiEndpoint.createAd(ad).enqueue(new Callback<Void>() {
+        RequestBody title = RequestBody.create(MediaType.parse("text/plain"), book.getTitle());
+        RequestBody author = RequestBody.create(MediaType.parse("text/plain"), book.getAuthor());
+        RequestBody subject = RequestBody.create(MediaType.parse("text/plain"), book.getSubject());
+
+        RequestBody requestDesc = RequestBody.create(MediaType.parse("text/plain"), ad.getDescription());
+        RequestBody requestPrice = RequestBody.create(MediaType.parse("text/plain"), ad.getPrice());
+        RequestBody requestAdImage = RequestBody.create(MediaType.parse("image/*"), file);
+
+        MultipartBody.Part fileAdImage = MultipartBody.Part.createFormData("img", file.getName(), requestAdImage);
+
+        apiEndpoint.createAd(title, author, subject, requestDesc, requestPrice, fileAdImage).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Log.e("SELL ACTIVITY request", Utils.bodyToString(call.request()));
                 Log.e("SELL ACTIVITY request", call.request().headers().toString());
                 if (response.code() == 201) {
                     Toast.makeText(SellActivity.this, "Ad created!", Toast.LENGTH_SHORT).show();
-                    //Intent intent = new Intent(SellActivity.this, HomeActivity.class);
-                    //startActivity(intent);
                     finish();
                 } else if (response.code() == 401) {
                     Toast.makeText(SellActivity.this, "401 ERROR!", Toast.LENGTH_SHORT).show();
@@ -121,7 +130,7 @@ public class SellActivity extends AppCompatActivity {
     }
 
 
-    private void storeImage() {
+    private File storeImage() {
         //get current image
         File toCompress = null;
         try {
@@ -138,7 +147,7 @@ public class SellActivity extends AppCompatActivity {
                 .setQuality(90)
                 .build().compressToFile(toCompress);
 
-        // TODO: upload image to server
+        return compressedFile;
     }
 
 
