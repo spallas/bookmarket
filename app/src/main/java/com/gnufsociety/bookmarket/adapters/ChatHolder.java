@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatHolder extends RecyclerView.ViewHolder {
 
@@ -19,6 +20,9 @@ public class ChatHolder extends RecyclerView.ViewHolder {
     TextView username;
     public @BindView(R.id.chat_time)
     TextView timestamp;
+
+    public @BindView(R.id.chatAvatarImage)
+    CircleImageView avatar;
 
     private String chat_id;
 
@@ -37,8 +41,6 @@ public class ChatHolder extends RecyclerView.ViewHolder {
 
     @OnClick
     void onClick(View view) {
-        System.out.println(getAdapterPosition());
-        System.out.println(getChat_id());
         Intent intent = new Intent(view.getContext(), ChatActivity.class);
         intent.putExtra("chat_id", getChat_id());
         intent.putExtra("user_chat", username.getText().toString());

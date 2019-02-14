@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
@@ -23,8 +24,10 @@ import com.gnufsociety.bookmarket.adapters.ChatHolder;
 import com.gnufsociety.bookmarket.models.firebase.Chat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -103,6 +106,25 @@ public class ChatFragment extends Fragment {
                 chatHolder.username.setText(chat.getName());
                 chatHolder.timestamp.setText(chat.getFormattedDate());
                 chatHolder.setChat_id(chat.getChat_id());
+
+
+                FirebaseDatabase.getInstance().getReference().child("users").child(chat.getUid()).child("avatar").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String avatar = (String) dataSnapshot.getValue();
+
+                        Glide.with(chatHolder.username.getContext())
+                                .load(avatar)
+                                .into(chatHolder.avatar);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @NonNull

@@ -12,8 +12,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:text="mario"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        card:layout_constraintStart_toEndOf="@+id/chatAvatarImage"
+        card:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/chatAvatarImage"
+        android:layout_width="64sp"
+        android:layout_height="64sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         card:layout_constraintBottom_toBottomOf="parent"
         card:layout_constraintStart_toStartOf="parent"
         card:layout_constraintTop_toTopOf="parent" />
@@ -22,9 +33,9 @@
         android:id="@+id/chat_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="19:32"
         card:layout_constraintBottom_toBottomOf="parent"
         card:layout_constraintEnd_toEndOf="parent"
