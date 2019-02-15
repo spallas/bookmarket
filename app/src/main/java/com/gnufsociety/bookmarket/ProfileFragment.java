@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,13 +22,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.gnufsociety.bookmarket.adapters.MyCardAdapter;
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
 import com.gnufsociety.bookmarket.models.Ad;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +56,8 @@ public class ProfileFragment extends Fragment {
 
     @BindView(R.id.signout_btn) Button logoutBtn;
     @BindView(R.id.my_ads_recycler) RecyclerView myAdsRecycler;
+    @BindView(R.id.profile_pic) CircleImageView profileImg;
+    @BindView(R.id.username_txt) TextView usernameTxt;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -73,7 +84,29 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, rootView);
-        Log.w("PROFILE MY ADS", "Creating View");
+        String uid = FirebaseAuth.getInstance().getUid();
+        FirebaseDatabase.getInstance()
+                .getReference()
+                .child("users")
+                .child(uid)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String avatar = (String) dataSnapshot.child("avatar").getValue();
+                String username = (String) dataSnapshot.child("username").getValue();
+
+                usernameTxt.setText(username);
+                Glide.with(getContext())
+                        .load(avatar)
+                        .into(profileImg);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        Log.d("PROFILE MY ADS", "Creating View");
         apiEndpoint.getMyAds().enqueue(new Callback<List<Ad>>() {
             @Override
             public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {

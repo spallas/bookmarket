@@ -1,9 +1,11 @@
 package com.gnufsociety.bookmarket.models;
 
+import java.io.Serializable;
+
 /**
  * Created by spallas on 31/01/2019.
  */
-public class Book {
+public class Book implements Serializable {
     private String title;
     private String author;
     private String subject;

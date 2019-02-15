@@ -14,6 +14,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by spallas on 29/01/2019.
@@ -47,7 +48,9 @@ public interface BookmarketEndpoints {
     @GET("ads/")
     Call<List<Ad>> getMyAds();
 
-    @GET("ads/{query}")
-    Call<List<Ad>> searchAds(@Path("query") String query);
+    @GET("/search")
+    Call<List<Ad>> searchAds(@Query("title") String title,
+                             @Query("author") String author,
+                             @Query("price") String price);
 
 }

@@ -1,9 +1,11 @@
 package com.gnufsociety.bookmarket.models;
 
+import java.io.Serializable;
+
 /**
  * Created by spallas on 30/01/2019.
  */
-public class Ad {
+public class Ad implements Serializable {
 
     private String price, description, img_url;
     private Book book;
@@ -30,18 +32,8 @@ public class Ad {
     public String getImgUrl() {
         return img_url;
     }
-}
 
-class AdUser {
-    private String username;
-    private String avatar_url;
-    private String firebase_id;
-
-    public AdUser(String username, String avatar_url/*, String firebase_id*/) {
-        this.username = username;
-        this.avatar_url = avatar_url;
-        this.firebase_id = firebase_id;
+    public AdUser getUser() {
+        return user;
     }
-
-
 }

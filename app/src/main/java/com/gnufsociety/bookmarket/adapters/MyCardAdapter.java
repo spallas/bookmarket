@@ -1,6 +1,8 @@
 package com.gnufsociety.bookmarket.adapters;
 
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gnufsociety.bookmarket.AdActivity;
+import com.gnufsociety.bookmarket.ChatActivity;
 import com.gnufsociety.bookmarket.R;
 import com.gnufsociety.bookmarket.models.Ad;
 
@@ -17,6 +21,7 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by spallas on 04/02/2019.
@@ -66,6 +71,16 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
         public CardViewHolder(final View view) {
             super(view);
             ButterKnife.bind(this, view);
+
+        }
+
+        @OnClick
+        void openAd(View view) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("ad", list.get(getAdapterPosition()));
+            Intent i = new Intent(view.getContext(), AdActivity.class);
+            i.putExtras(bundle);
+            view.getContext().startActivity(i);
 
         }
     }

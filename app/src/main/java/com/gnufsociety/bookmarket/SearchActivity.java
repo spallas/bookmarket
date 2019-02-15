@@ -22,6 +22,7 @@ import com.gnufsociety.bookmarket.models.Ad;
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class SearchActivity extends AppCompatActivity {
     MyCardAdapter adapter;
     @BindView(R.id.recycler_card_view) RecyclerView recyclerView;
     @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
-
+    public static String JARGON = "key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,19 +65,21 @@ public class SearchActivity extends AppCompatActivity {
 
     public void doSearch(String query) {
         Toast.makeText(getBaseContext(), query, Toast.LENGTH_LONG).show();
-        apiEndpoint.searchAds(query).enqueue(new Callback<List<Ad>>() {
+        apiEndpoint.searchAds(query, null, null).enqueue(new Callback<List<Ad>>() {
             @Override
             public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
-                Log.e("SEARCH ADS", Utils.bodyToString(call.request()));
-                if (response.code() == 201) {
+                // Log.e("SEARCH ADS", Utils.bodyToString(call.request()));
+                if (response.code() == 200) {
                     Toast.makeText(SearchActivity.this, "Returning your ads!", Toast.LENGTH_SHORT).show();
                     ArrayList<Ad> resultAds = (ArrayList<Ad>) response.body();
                     adapter = new MyCardAdapter(resultAds);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+
                 } else {
                     Toast.makeText(SearchActivity.this, " ERROR! " + response.code(), Toast.LENGTH_SHORT).show();
                 }
+                refreshLayout.setRefreshing(false);
             }
 
             @Override

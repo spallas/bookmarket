@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.gnufsociety.bookmarket.api.Api;
@@ -202,5 +203,15 @@ public class HomeActivity extends FragmentActivity
         }
 
     }
+
+    @Override
+    public boolean onSearchRequested() {
+        Bundle appData = new Bundle();
+        appData.putBoolean(SearchActivity.JARGON, true);
+        Toast.makeText(HomeActivity.this, " ON SEARCH requested! ", Toast.LENGTH_SHORT).show();
+        startSearch(null, false, appData, false);
+        return true;
+    }
+
 
 }
