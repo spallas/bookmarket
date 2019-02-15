@@ -33,9 +33,9 @@ public class Ad {
 }
 
 class AdUser {
-    String username;
-    String avatar_url;
-    String firebase_id;
+    private String username;
+    private String avatar_url;
+    private String firebase_id;
 
     public AdUser(String username, String avatar_url/*, String firebase_id*/) {
         this.username = username;

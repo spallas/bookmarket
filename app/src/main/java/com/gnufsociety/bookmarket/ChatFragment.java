@@ -103,16 +103,21 @@ public class ChatFragment extends Fragment {
         adapter = new FirebaseRecyclerAdapter<Chat, ChatHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ChatHolder chatHolder, int i, @NonNull Chat chat) {
-                chatHolder.username.setText(chat.getName());
+                //chatHolder.username.setText(chat.getName());
                 chatHolder.timestamp.setText(chat.getFormattedDate());
                 chatHolder.setChat_id(chat.getChat_id());
+                chatHolder.last_msg.setText(chat.getLast_message());
 
 
-                FirebaseDatabase.getInstance().getReference().child("users").child(chat.getUid()).child("avatar").addListenerForSingleValueEvent(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference().child("users").child(chat.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String avatar = (String) dataSnapshot.getValue();
+                        String avatar = (String) dataSnapshot.child("avatar").getValue();
+                        String username = (String) dataSnapshot.child("username").getValue();
 
+
+
+                        chatHolder.username.setText(username);
                         Glide.with(chatHolder.username.getContext())
                                 .load(avatar)
                                 .into(chatHolder.avatar);

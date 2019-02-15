@@ -9,19 +9,26 @@ import java.util.Calendar;
 
 public class Chat {
 
-    private String name;
     private String chat_id;
     private Long timestamp;
     private String uid;
+    private String last_message;
 
     public Chat() {
     }
 
-    public Chat(String name, String chat_id, Long timestamp, String uid) {
-        this.name = name;
+    public Chat(String chat_id, Long timestamp, String uid) {
         this.chat_id = chat_id;
         this.timestamp = timestamp;
         this.uid = uid;
+    }
+
+    public String getLast_message() {
+        return last_message;
+    }
+
+    public void setLast_message(String last_message) {
+        this.last_message = last_message;
     }
 
     public Long getTimestamp() {
@@ -40,16 +47,8 @@ public class Chat {
         this.uid = uid;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getChat_id() {
         return chat_id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setChat_id(String chat_id) {

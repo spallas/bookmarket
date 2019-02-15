@@ -24,14 +24,18 @@ public class ChatHolder extends RecyclerView.ViewHolder {
     public @BindView(R.id.chatAvatarImage)
     CircleImageView avatar;
 
-    private String chat_id;
+    public @BindView(R.id.chat_lastmsg)
+    TextView last_msg;
 
-    public String getChat_id() {
-        return chat_id;
-    }
+    private String chat_id;
+    private String avatar_url;
 
     public void setChat_id(String chat_id) {
         this.chat_id = chat_id;
+    }
+
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
     }
 
     public ChatHolder(@NonNull View itemView) {
@@ -42,8 +46,9 @@ public class ChatHolder extends RecyclerView.ViewHolder {
     @OnClick
     void onClick(View view) {
         Intent intent = new Intent(view.getContext(), ChatActivity.class);
-        intent.putExtra("chat_id", getChat_id());
-        intent.putExtra("user_chat", username.getText().toString());
+        intent.putExtra("chat_id", this.chat_id);
+        intent.putExtra("avatar_url", this.avatar_url);
+        intent.putExtra("user_chat", this.username.getText().toString());
         view.getContext().startActivity(intent);
 
         //clicked item position

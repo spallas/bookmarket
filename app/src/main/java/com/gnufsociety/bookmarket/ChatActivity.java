@@ -73,7 +73,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Query query = dbReference
                 .child("chats").child(chat_id).orderByChild("timestamp")
-                .limitToFirst(50);
+                .limitToLast(50);
 
         SnapshotParser<Message> parser = new SnapshotParser<Message>() {
             @NonNull

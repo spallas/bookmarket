@@ -1,6 +1,7 @@
 package com.gnufsociety.bookmarket.api;
 
 import com.gnufsociety.bookmarket.models.Ad;
+import com.gnufsociety.bookmarket.models.UserComplete;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface BookmarketEndpoints {
 
     @Multipart
     @POST("users/complete")
-    Call<Void> completeProfile(
+    Call<UserComplete> completeProfile(
             @Part() MultipartBody.Part avatar,
             @Part("user[username]") RequestBody username
             );

@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
-import com.gnufsociety.bookmarket.models.CompleteProfile;
+import com.gnufsociety.bookmarket.models.UserComplete;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 
@@ -85,11 +87,12 @@ public class CompleteActivity extends AppCompatActivity {
 
             RequestBody requestUsername = RequestBody.create(MediaType.parse("text/plain"), username);
 
-            apiEndpoints.completeProfile(fileAvatar, requestUsername).enqueue(new Callback<Void>() {
+            apiEndpoints.completeProfile(fileAvatar, requestUsername).enqueue(new Callback<UserComplete>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (response.code() == 201) {
+                public void onResponse(Call<UserComplete> call, Response<UserComplete> response) {
+                    if (response.code() == 200) {
                         Toast.makeText(CompleteActivity.this, "Profilo completo!", Toast.LENGTH_SHORT).show();
+                        updateDbWithAvatarAndPassword(response.body());
                         Intent intent = new Intent(CompleteActivity.this, HomeActivity.class);
                         startActivity(intent);
                     } else if (response.code() == 401) {
@@ -98,7 +101,7 @@ public class CompleteActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {
+                public void onFailure(Call<UserComplete> call, Throwable t) {
                     Log.e("Complete Profile", t.getMessage());
                 }
             });
@@ -134,19 +137,13 @@ public class CompleteActivity extends AppCompatActivity {
         }
     }
 
-    private String getFilePath(Uri file) {
-        String path = null;
-        Cursor cursor = getContentResolver()
-                .query(file, null, null, null, null);
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                path = cursor.getString(0);
-            }
-            cursor.close();
-        }
-        return path;
+    //Add username and avatar in firebase db under uid key
+    private void updateDbWithAvatarAndPassword(UserComplete user) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users")
+                .child(user.getFirebase_id());
+        ref.child("avatar").setValue(user.getAvatar_url());
+        ref.child("username").setValue(user.getUsername());
     }
-
 
     public String getRealPathFromURI(Uri contentUri) {
         String[] proj = {MediaStore.Images.Media.DATA};
