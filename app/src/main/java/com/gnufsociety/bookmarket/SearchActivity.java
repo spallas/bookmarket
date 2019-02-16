@@ -2,29 +2,26 @@ package com.gnufsociety.bookmarket;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.os.AsyncTask;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import com.gnufsociety.bookmarket.adapters.MyCardAdapter;
+import com.gnufsociety.bookmarket.api.Api;
+import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
+import com.gnufsociety.bookmarket.models.Ad;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import android.util.Log;
-import android.widget.Toast;
-
-import com.gnufsociety.bookmarket.adapters.MyCardAdapter;
-import com.gnufsociety.bookmarket.models.Ad;
-import com.gnufsociety.bookmarket.api.Api;
-import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -32,7 +29,6 @@ public class SearchActivity extends AppCompatActivity {
     MyCardAdapter adapter;
     @BindView(R.id.recycler_card_view) RecyclerView recyclerView;
     @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
-    public static String JARGON = "key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +64,14 @@ public class SearchActivity extends AppCompatActivity {
         apiEndpoint.searchAds(query, null, null).enqueue(new Callback<List<Ad>>() {
             @Override
             public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
-                // Log.e("SEARCH ADS", Utils.bodyToString(call.request()));
                 if (response.code() == 200) {
-                    Toast.makeText(SearchActivity.this, "Returning your ads!", Toast.LENGTH_SHORT).show();
                     ArrayList<Ad> resultAds = (ArrayList<Ad>) response.body();
                     adapter = new MyCardAdapter(resultAds);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
 
                 } else {
-                    Toast.makeText(SearchActivity.this, " ERROR! " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchActivity.this, " ERROR: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
                 refreshLayout.setRefreshing(false);
             }
@@ -88,6 +82,4 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

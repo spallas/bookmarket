@@ -40,7 +40,6 @@ import retrofit2.Response;
 
 public class HomeActivity extends FragmentActivity
         implements HomeFragment.OnFragmentInteractionListener,
-                   ProfileFragment.OnFragmentInteractionListener,
                    ChatFragment.OnFragmentInteractionListener
 {
 
@@ -185,11 +184,11 @@ public class HomeActivity extends FragmentActivity
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
+                case 0:
                     return ProfileFragment.newInstance();
-                case 1: // Fragment # 0 - This will show FirstFragment different title
+                case 1:
                     return HomeFragment.newInstance();
-                case 2: // Fragment # 1 - This will show SecondFragment
+                case 2:
                     return ChatFragment.newInstance();
                 default:
                     return null;
@@ -207,7 +206,6 @@ public class HomeActivity extends FragmentActivity
     @Override
     public boolean onSearchRequested() {
         Bundle appData = new Bundle();
-        appData.putBoolean(SearchActivity.JARGON, true);
         Toast.makeText(HomeActivity.this, " ON SEARCH requested! ", Toast.LENGTH_SHORT).show();
         //startSearch(null, false, appData, false);
         return true;

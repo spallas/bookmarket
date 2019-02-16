@@ -36,12 +36,12 @@ import com.google.firebase.database.ValueEventListener;
 public class AdActivity extends AppCompatActivity {
 
     @BindView(R.id.ad_img) ImageView adImg;
-    @BindView(R.id.ad_title) TextView adTitle;
-    @BindView(R.id.ad_author) TextView adAuthor;
+    @BindView(R.id.my_ad_title) TextView adTitle;
+    @BindView(R.id.my_ad_author) TextView adAuthor;
     @BindView(R.id.ad_price) TextView adPrice;
-    @BindView(R.id.ad_desc) TextView adDesc;
+    @BindView(R.id.my_ad_desc) TextView adDesc;
     @BindView(R.id.ad_seller) TextView adSeller;
-    @BindView(R.id.ad_propic) CircleImageView adSellerPic;
+    @BindView(R.id.my_ad_propic) CircleImageView adSellerPic;
     @BindView(R.id.ad_contact_btn) Button contactBtn;
     @BindView(R.id.google_book_recycler) RecyclerView booksRecycler;
     Ad ad;

@@ -13,8 +13,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.gnufsociety.bookmarket.AdActivity;
 import com.gnufsociety.bookmarket.ChatActivity;
+import com.gnufsociety.bookmarket.MyAdActivity;
 import com.gnufsociety.bookmarket.R;
 import com.gnufsociety.bookmarket.models.Ad;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -76,12 +78,16 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
 
         @OnClick
         void openAd(View view) {
+            String myUid = FirebaseAuth.getInstance().getUid();
+            Class target = AdActivity.class;
+            if (list.get(getAdapterPosition()).getUser().getFirebase_id().equals(myUid)) {
+                target = MyAdActivity.class;
+            }
             Bundle bundle = new Bundle();
             bundle.putSerializable("ad", list.get(getAdapterPosition()));
-            Intent i = new Intent(view.getContext(), AdActivity.class);
+            Intent i = new Intent(view.getContext(), target);
             i.putExtras(bundle);
             view.getContext().startActivity(i);
-
         }
     }
 }

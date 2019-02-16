@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.gnufsociety.bookmarket.api.Api;
@@ -44,7 +45,8 @@ public class SellActivity extends AppCompatActivity {
     @BindView(R.id.edit_ad_desc) EditText editDesc;
     @BindView(R.id.edit_ad_subj) EditText editSubj;
     @BindView(R.id.edit_ad_author) EditText editAuthor;
-    @BindView(R.id.edit_ad_price) EditText editPrice;
+    @BindView(R.id.edit_ad_price) NumberPicker editPriceInteger;
+    @BindView(R.id.edit_ad_price2) NumberPicker editPriceCents;
     @BindView(R.id.add_ad_img) ImageView adImage;
     @BindView(R.id.add_ad_btn) Button addAdBtn;
 
@@ -56,47 +58,66 @@ public class SellActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sell);
         ButterKnife.bind(this);
 
+        editPriceInteger.setMinValue(0);
+        editPriceInteger.setMaxValue(200);
+        editPriceCents.setMinValue(0);
+        editPriceCents.setMaxValue(99);
+        editPriceCents.setFormatter(i -> String.format("%02d", i));
     }
 
     @OnClick(R.id.add_ad_btn)
     public void postNewAd() {
+        File image = compressImage();
+        if (checkValue()) {
+            Book book = new Book(editTitle.getText().toString(),
+                    editAuthor.getText().toString(),
+                    editSubj.getText().toString());
+            Ad ad = new Ad(book, editDesc.getText().toString(),
+                    ((float) editPriceInteger.getValue()) + (float) 0.01 * editPriceCents.getValue());
 
-        File file = storeImage();
+            RequestBody title = RequestBody.create(MediaType.parse("text/plain"), book.getTitle());
+            RequestBody author = RequestBody.create(MediaType.parse("text/plain"), book.getAuthor());
+            RequestBody subject = RequestBody.create(MediaType.parse("text/plain"), book.getSubject());
 
-        Book book = new Book(editTitle.getText().toString(), editAuthor.getText().toString(), "BOH");
-        Ad ad = new Ad(book, editDesc.getText().toString(), Float.valueOf(editPrice.getText().toString()));
+            RequestBody requestDesc = RequestBody.create(MediaType.parse("text/plain"), ad.getDescription());
+            RequestBody requestPrice = RequestBody.create(MediaType.parse("text/plain"), ad.getPrice());
+            RequestBody requestAdImage = RequestBody.create(MediaType.parse("image/*"), image);
 
-        RequestBody title = RequestBody.create(MediaType.parse("text/plain"), book.getTitle());
-        RequestBody author = RequestBody.create(MediaType.parse("text/plain"), book.getAuthor());
-        RequestBody subject = RequestBody.create(MediaType.parse("text/plain"), book.getSubject());
-
-        RequestBody requestDesc = RequestBody.create(MediaType.parse("text/plain"), ad.getDescription());
-        RequestBody requestPrice = RequestBody.create(MediaType.parse("text/plain"), ad.getPrice());
-        RequestBody requestAdImage = RequestBody.create(MediaType.parse("image/*"), file);
-
-        MultipartBody.Part fileAdImage = MultipartBody.Part.createFormData("img", file.getName(), requestAdImage);
-
-        apiEndpoint.createAd(title, author, subject, requestDesc, requestPrice, fileAdImage).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.e("SELL ACTIVITY request", Utils.bodyToString(call.request()));
-                Log.e("SELL ACTIVITY request", call.request().headers().toString());
-                if (response.code() == 201) {
-                    Toast.makeText(SellActivity.this, "Ad created!", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else if (response.code() == 401) {
-                    Toast.makeText(SellActivity.this, "401 ERROR!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SellActivity.this, "SELL ERROR!" + response.code(), Toast.LENGTH_SHORT).show();
+            MultipartBody.Part fileAdImage = MultipartBody.Part.createFormData("img", image.getName(), requestAdImage);
+            Toast.makeText(this, "Uploading ad...", Toast.LENGTH_LONG).show();
+            apiEndpoint.createAd(title, author, subject, requestDesc, requestPrice, fileAdImage).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    Log.d("SELL ACTIVITY request", Utils.bodyToString(call.request()));
+                    Log.d("SELL ACTIVITY request", call.request().headers().toString());
+                    if (response.code() == 201) {
+                        Toast.makeText(SellActivity.this, "Ad created!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(SellActivity.this, "SELL ERROR: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Log.e("Sell Activity", t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Log.e("Sell Activity: ", t.getMessage());
+                }
+            });
+        } else {
+            Toast.makeText(this, "Fill all the required fields!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private boolean checkValue() {
+        boolean allSetUp = true;
+        if (editTitle.getText().toString().trim().length() == 0 ||
+            editAuthor.getText().toString().trim().length() == 0 ||
+            editDesc.getText().toString().trim().length() == 0
+            )
+        {
+            allSetUp = false;
+        }
+        return allSetUp;
     }
 
 
@@ -130,7 +151,7 @@ public class SellActivity extends AppCompatActivity {
     }
 
 
-    private File storeImage() {
+    private File compressImage() {
         //get current image
         File toCompress = null;
         try {
@@ -138,16 +159,12 @@ public class SellActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Toast.makeText(this, "Uploading ad..", Toast.LENGTH_LONG).show();
-
-        //return compressed image PLAY WITH THIS
-        final File compressedFile = new Compressor.Builder(this)
+        //return compressed image
+        return new Compressor.Builder(this)
                 .setMaxHeight(1024)
                 .setMaxWidth(1024)
                 .setQuality(90)
                 .build().compressToFile(toCompress);
-
-        return compressedFile;
     }
 
 

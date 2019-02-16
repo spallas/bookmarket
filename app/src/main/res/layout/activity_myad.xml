@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ad_img"
+            android:id="@+id/my_ad_img"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scaleType="center"
@@ -69,7 +69,7 @@
             app:layout_constraintTop_toBottomOf="@+id/my_ad_author" />
 
         <TextView
-            android:id="@+id/ad_price"
+            android:id="@+id/my_ad_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -98,87 +98,45 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="152dp"
             android:layout_marginEnd="16dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/my_ad_desc" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/my_ad_propic"
-            android:layout_width="64sp"
-            android:layout_height="64sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/upload_img"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_divider2" />
-
-        <View
-            android:id="@+id/my_divider3"
+        <Button
+            android:id="@+id/ad_edit_btn"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_ad_propic" />
-
-        <TextView
-            android:id="@+id/ad_seller"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="scemodicecosa"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/my_divider3"
-            app:layout_constraintStart_toEndOf="@+id/my_ad_propic"
-            app:layout_constraintTop_toBottomOf="@+id/my_divider2" />
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="edit"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_ad_desc" />
 
         <Button
-            android:id="@+id/ad_contact_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="Contact seller"
-            app:layout_constraintBottom_toTopOf="@+id/my_divider3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_divider2" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/google_book_recycler"
-            android:layout_width="match_parent"
-
+            android:id="@+id/ad_delete_btn"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="32dp"
+            android:backgroundTint="@color/fui_bgEmail"
+            android:text="Set as sold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_add_see_online">
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/my_ad_desc" />
 
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <TextView
-            android:id="@+id/my_add_see_online"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="sans-serif-light"
-            android:text="See it also on:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_divider3" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
