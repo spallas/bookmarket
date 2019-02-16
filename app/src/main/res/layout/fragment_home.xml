@@ -11,27 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="4dp"
-            android:text="HOME"
-            android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
 
         <SearchView
             android:id="@+id/search"
             android:layout_width="325dp"
             android:layout_height="47dp"
-            android:layout_marginTop="168dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="200dp"
             android:layout_marginEnd="8dp"
             android:iconifiedByDefault="false"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.551"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <requestFocus />
         </SearchView>
@@ -42,9 +33,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="128dp"
+            android:layout_marginEnd="8dp"
             android:text="SELL"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
