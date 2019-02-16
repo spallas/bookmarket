@@ -13,7 +13,7 @@
             android:id="@+id/ad_img"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/my_guideline5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

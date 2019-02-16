@@ -51,6 +51,7 @@ public interface BookmarketEndpoints {
     @GET("/search")
     Call<List<Ad>> searchAds(@Query("title") String title,
                              @Query("author") String author,
+                             @Query("subject") String subject,
                              @Query("price") String price);
 
 }
