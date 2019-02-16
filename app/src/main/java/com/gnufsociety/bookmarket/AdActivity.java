@@ -57,7 +57,7 @@ public class AdActivity extends AppCompatActivity {
 
         adTitle.setText(ad.getBook().getTitle());
         adAuthor.setText(ad.getBook().getAuthor());
-        adPrice.setText("Price: €" + ad.getPrice());
+        adPrice.setText("€" + ad.getPrice());
         adDesc.setText(ad.getDescription());
         adSeller.setText(ad.getUser().getUsername());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),

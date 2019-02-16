@@ -7,85 +7,93 @@
     android:layout_height="match_parent"
     tools:context=".SellActivity">
 
-    <TextView
-    android:id="@+id/sell"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="SELL ACTIVITY"
-    android:textAlignment="center"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:layout_editor_absoluteX="0dp" />
-
     <EditText
         android:id="@+id/edit_ad_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
         android:hint="Title of the ad..."
-        app:layout_constraintTop_toTopOf="@+id/sell"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edit_ad_author"
         android:layout_width="match_parent"
         android:layout_height="41dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:hint="Author..."
-        app:layout_constraintTop_toBottomOf="@+id/edit_ad_desc"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ad_desc" />
 
     <EditText
         android:id="@+id/edit_ad_subj"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:hint="Subject..."
-        app:layout_constraintTop_toBottomOf="@+id/edit_ad_title"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ad_title" />
 
     <EditText
         android:id="@+id/edit_ad_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:hint="Description..."
-        app:layout_constraintTop_toBottomOf="@+id/edit_ad_subj"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ad_subj" />
 
     <!-- TODO: change to NumberPicker -->
     <EditText
         android:id="@+id/edit_ad_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:hint="Price..."
-        app:layout_constraintTop_toBottomOf="@+id/edit_ad_author"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ad_author" />
 
     <ImageView
         android:id="@+id/add_ad_img"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:adjustViewBounds="true"
         android:maxWidth="150dp"
         android:maxHeight="150dp"
         android:src="@drawable/upload_img"
-        app:layout_constraintEnd_toEndOf="@+id/sell"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="@+id/sell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_ad_price" />
 
     <Button
         android:id="@+id/add_ad_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:text="ADD"
-        app:layout_constraintEnd_toEndOf="@+id/sell"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="@+id/sell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_ad_img" />
 
 
