@@ -115,9 +115,8 @@ public class ChatFragment extends Fragment {
                         String avatar = (String) dataSnapshot.child("avatar").getValue();
                         String username = (String) dataSnapshot.child("username").getValue();
 
-
-
                         chatHolder.username.setText(username);
+                        chatHolder.setAvatar_url(avatar);
                         Glide.with(chatHolder.username.getContext())
                                 .load(avatar)
                                 .into(chatHolder.avatar);

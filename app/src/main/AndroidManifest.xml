@@ -38,6 +38,7 @@
         <activity android:name=".CompleteActivity">
 
         </activity>
+        <activity android:name=".MyAdActivity"/>
         <activity
             android:name=".HomeActivity"
             android:windowSoftInputMode="adjustPan">

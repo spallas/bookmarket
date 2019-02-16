@@ -107,6 +107,8 @@ public class AdActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(AdActivity.this,  ChatActivity.class);
                 intent.putExtra("chat_id", chatId);
+                intent.putExtra("user_chat", ad.getUser().getUsername());
+                intent.putExtra("avatar_url", ad.getUser().getAvatar_url());
                 startActivity(intent);
             }
 

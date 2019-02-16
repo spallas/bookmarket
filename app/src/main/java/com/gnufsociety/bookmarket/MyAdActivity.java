@@ -14,17 +14,17 @@ import butterknife.OnClick;
 
 public class MyAdActivity extends AppCompatActivity {
 
-    @BindView(R.id.ad_img) ImageView adImg;
+    @BindView(R.id.my_ad_img) ImageView adImg;
     @BindView(R.id.my_ad_title) TextView adTitle;
     @BindView(R.id.my_ad_author) TextView adAuthor;
-    @BindView(R.id.ad_price) TextView adPrice;
+    @BindView(R.id.my_ad_price) TextView adPrice;
     @BindView(R.id.my_ad_desc) TextView adDesc;
     Ad ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ad);
+        setContentView(R.layout.activity_myad);
 
         ButterKnife.bind(this);
 

@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
@@ -50,6 +51,7 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter adapter;
     private String chat_id;
     private String user_chat;
+    private String avatar_url;
     private DatabaseReference dbReference;
     private LinearLayoutManager linearLayoutManager;
     private final int VIEW_TYPE_SENT = 0;
@@ -80,11 +82,16 @@ public class ChatActivity extends AppCompatActivity {
         Intent intent = getIntent();
         chat_id = intent.getStringExtra("chat_id");
         user_chat = intent.getStringExtra("user_chat");
+        avatar_url = intent.getStringExtra("avatar_url");
 
         ButterKnife.bind(this);
 
 
         headUser.setText(user_chat);
+
+        Glide.with(this)
+                .load(avatar_url)
+                .into(headImage);
 
         this.dbReference = FirebaseDatabase.getInstance().getReference();
 
