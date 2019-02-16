@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,7 +104,7 @@ public class ChatFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull ChatHolder chatHolder, int i, @NonNull Chat chat) {
                 //chatHolder.username.setText(chat.getName());
-                chatHolder.timestamp.setText(chat.getFormattedDate());
+                chatHolder.timestamp.setText(chat.loadFormattedDate());
                 chatHolder.setChat_id(chat.getChat_id());
                 chatHolder.last_msg.setText(chat.getLast_message());
 
@@ -141,9 +141,12 @@ public class ChatFragment extends Fragment {
                 return new ChatHolder(view);
             }
         };
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
         return rootView;
         // Inflate the layout for this fragment
     }
@@ -157,7 +160,6 @@ public class ChatFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
-        Log.d("AOOOO","AOOOOOOOO");
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;

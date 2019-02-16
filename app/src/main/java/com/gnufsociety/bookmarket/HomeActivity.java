@@ -209,7 +209,7 @@ public class HomeActivity extends FragmentActivity
         Bundle appData = new Bundle();
         appData.putBoolean(SearchActivity.JARGON, true);
         Toast.makeText(HomeActivity.this, " ON SEARCH requested! ", Toast.LENGTH_SHORT).show();
-        startSearch(null, false, appData, false);
+        //startSearch(null, false, appData, false);
         return true;
     }
 

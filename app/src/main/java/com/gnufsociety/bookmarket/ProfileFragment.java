@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,10 +55,10 @@ public class ProfileFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     public MyCardAdapter adapter;
 
-    @BindView(R.id.signout_btn) Button logoutBtn;
-    @BindView(R.id.my_ads_recycler) RecyclerView myAdsRecycler;
+    @BindView(R.id.logout_btn) ImageButton logoutBtn;
+    @BindView(R.id.profile_ads) RecyclerView myAdsRecycler;
     @BindView(R.id.profile_pic) CircleImageView profileImg;
-    @BindView(R.id.username_txt) TextView usernameTxt;
+    @BindView(R.id.profile_username) TextView usernameTxt;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -135,7 +136,7 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    @OnClick(R.id.signout_btn)
+    @OnClick(R.id.logout_btn)
     public void logout() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(getContext(), HomeActivity.class);
