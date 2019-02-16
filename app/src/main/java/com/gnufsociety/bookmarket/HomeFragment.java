@@ -5,18 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import com.gnufsociety.bookmarket.api.GoogleApi;
+import com.gnufsociety.bookmarket.api.GoogleBooksEndpoints;
+import com.gnufsociety.bookmarket.models.GoogleBook;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -79,7 +86,8 @@ public class HomeFragment extends Fragment {
     }
 
     @OnClick(R.id.sell_btn)
-    public void startSellActivity() {
+    void startSellActivity() {
+
         Intent intent = new Intent(getActivity(), SellActivity.class);
         startActivity(intent);
     }

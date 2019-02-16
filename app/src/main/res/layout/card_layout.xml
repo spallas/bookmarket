@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    card:cardCornerRadius="4dp"
+    card:cardCornerRadius="10dp"
     card:cardElevation="3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,60 +15,74 @@
 
         <TextView
             android:id="@+id/card_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="TITLE"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="La Divina Commedia"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            card:layout_constraintEnd_toStartOf="@+id/card_price"
+            card:layout_constraintHorizontal_bias="0.0"
             card:layout_constraintStart_toStartOf="parent"
-            card:layout_constraintTop_toTopOf="parent" />
+            card:layout_constraintTop_toTopOf="@+id/card_img" />
 
         <TextView
             android:id="@+id/card_author"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="AUTHOR"
-            card:layout_constraintStart_toStartOf="parent"
-            card:layout_constraintTop_toBottomOf="@+id/card_title" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Dante Alighieri"
+            card:layout_constraintBottom_toBottomOf="@+id/card_img"
+            card:layout_constraintEnd_toStartOf="@+id/card_price"
+            card:layout_constraintHorizontal_bias="0.0"
+            card:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/card_price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:text="PRICE"
-            card:layout_constraintBottom_toTopOf="@+id/guideline3"
-            card:layout_constraintEnd_toStartOf="@+id/card_img" />
+            android:layout_height="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="12 €"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            card:layout_constraintEnd_toStartOf="@+id/card_img"
+            card:layout_constraintTop_toTopOf="@+id/card_img" />
 
 
         <ImageView
             android:id="@+id/card_img"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_centerHorizontal="false"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/upload_img"
             card:layout_constraintBottom_toBottomOf="parent"
             card:layout_constraintEnd_toEndOf="parent"
             card:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            card:layout_constraintGuide_percent="0.25" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            card:layout_constraintGuide_percent=".75" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:drawableEnd="@drawable/ic_baseline_remove_red_eye"
+            android:text="23"
+            card:layout_constraintBottom_toBottomOf="@+id/card_img"
+            card:layout_constraintEnd_toStartOf="@+id/card_img" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

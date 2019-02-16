@@ -60,13 +60,13 @@ public class Chat {
         return "";
     }
 
-    public String getFormattedDate() {
+    public String loadFormattedDate() {
         Calendar smsTime = Calendar.getInstance();
         smsTime.setTimeInMillis(getTimestamp()*-1);
 
         Calendar now = Calendar.getInstance();
 
-        final String timeFormatString = "hh:mm";
+        final String timeFormatString = "HH:mm";
         final String dateTimeFormatString = "dd/MM/yy";
         final long HOURS = 60 * 60 * 60;
         if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE) ) {
