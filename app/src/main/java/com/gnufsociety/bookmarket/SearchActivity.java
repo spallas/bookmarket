@@ -3,6 +3,7 @@ package com.gnufsociety.bookmarket;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.gnufsociety.bookmarket.adapters.MyCardAdapter;
@@ -29,6 +30,8 @@ public class SearchActivity extends AppCompatActivity {
     MyCardAdapter adapter;
     @BindView(R.id.recycler_card_view) RecyclerView recyclerView;
     @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.search_title_edit)
+    EditText titleEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
