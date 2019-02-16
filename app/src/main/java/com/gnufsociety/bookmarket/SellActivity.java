@@ -138,10 +138,7 @@ public class SellActivity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriImage);
                     adImage.clearColorFilter();
-                    adImage.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    adImage.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
                     adImage.requestLayout();
-                    adImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     adImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
