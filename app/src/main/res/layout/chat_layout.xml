@@ -1,59 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/row_chat"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/chat_lastmsg"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Sono andato in pizzeria ma non posso to.."
         android:textSize="14sp"
-        card:layout_constraintBottom_toBottomOf="parent"
-        card:layout_constraintStart_toEndOf="@+id/chatAvatarImage" />
+        app:layout_constraintBottom_toBottomOf="@+id/chatAvatarImage"
+        app:layout_constraintEnd_toStartOf="@+id/chat_time"
+        app:layout_constraintStart_toEndOf="@+id/chatAvatarImage"
+        app:layout_constraintTop_toBottomOf="@+id/chat_username" />
 
     <TextView
         android:id="@+id/chat_username"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="mario"
         android:textSize="18sp"
         android:textStyle="bold"
-        card:layout_constraintStart_toEndOf="@+id/chatAvatarImage"
-        card:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/chat_time"
+        app:layout_constraintStart_toEndOf="@+id/chatAvatarImage"
+        app:layout_constraintTop_toTopOf="@+id/chatAvatarImage" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/chatAvatarImage"
         android:layout_width="64sp"
         android:layout_height="64sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/upload_img"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        card:layout_constraintBottom_toBottomOf="parent"
-        card:layout_constraintStart_toStartOf="parent"
-        card:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/chat_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="19:32"
+        app:layout_constraintBottom_toBottomOf="@+id/chatAvatarImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/chatAvatarImage" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="19:32"
-        card:layout_constraintBottom_toBottomOf="parent"
-        card:layout_constraintEnd_toEndOf="parent"
-        card:layout_constraintTop_toTopOf="parent" />
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chatAvatarImage"
+        app:layout_constraintTop_toBottomOf="@+id/chatAvatarImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

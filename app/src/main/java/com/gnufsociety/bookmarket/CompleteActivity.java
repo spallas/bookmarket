@@ -87,12 +87,14 @@ public class CompleteActivity extends AppCompatActivity {
 
             RequestBody requestUsername = RequestBody.create(MediaType.parse("text/plain"), username);
 
+
+            Toast.makeText(this, "Stiamo creando il tuo profilo!", Toast.LENGTH_SHORT).show();
             apiEndpoints.completeProfile(fileAvatar, requestUsername).enqueue(new Callback<UserComplete>() {
                 @Override
                 public void onResponse(Call<UserComplete> call, Response<UserComplete> response) {
                     if (response.code() == 200) {
                         Toast.makeText(CompleteActivity.this, "Profilo completo!", Toast.LENGTH_SHORT).show();
-                        updateDbWithAvatarAndPassword(response.body());
+                        updateDbWithAvatarAndUsername(response.body());
                         Intent intent = new Intent(CompleteActivity.this, HomeActivity.class);
                         startActivity(intent);
                     } else if (response.code() == 401) {
@@ -138,7 +140,7 @@ public class CompleteActivity extends AppCompatActivity {
     }
 
     //Add username and avatar in firebase db under uid key
-    private void updateDbWithAvatarAndPassword(UserComplete user) {
+    private void updateDbWithAvatarAndUsername(UserComplete user) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users")
                 .child(user.getFirebase_id());
         ref.child("avatar").setValue(user.getAvatar_url());

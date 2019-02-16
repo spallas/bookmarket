@@ -68,6 +68,23 @@ public class HomeActivity extends FragmentActivity
         }
         else {
             initializeUI();
+
+            BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
+            apiEndpoint.existUser().enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.code() == 200)
+                        Log.e("HomeActivity", "L'utente già esiste su rails!");
+                    else if (response.code() == 401)
+                        startActivity(new Intent(progressBar.getContext(), CompleteActivity.class));
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Log.e("FireBaseLogin",t.getMessage());
+                    finish();
+                }
+            });
         }
 
     }
@@ -117,7 +134,7 @@ public class HomeActivity extends FragmentActivity
         if (requestCode == RC_SIGN_IN){
             if (resultCode == RESULT_OK){
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                setupFCM(user.getUid());
+                //setupFCM(user.getUid());
                 BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
                 apiEndpoint.existUser().enqueue(new Callback<Void>() {
                     @Override
@@ -134,11 +151,6 @@ public class HomeActivity extends FragmentActivity
                     }
                 });
             }
-
-
-
-
-
 
             // TODO check if the user exists on rails backend, if yes jump to home activity, otherwise remain on complete profile
 

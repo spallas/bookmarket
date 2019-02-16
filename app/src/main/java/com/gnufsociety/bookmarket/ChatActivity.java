@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -37,6 +40,12 @@ public class ChatActivity extends AppCompatActivity {
 
     @BindView(R.id.edit_send)
     EditText messageEdit;
+    @BindView(R.id.header_chat_image)
+    CircleImageView headImage;
+    @BindView(R.id.header_chat_username)
+    TextView headUser;
+    @BindView(R.id.header_chat_back)
+    ImageButton headBackBtn;
 
     private FirebaseRecyclerAdapter adapter;
     private String chat_id;
@@ -58,6 +67,11 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.header_chat_back)
+    void goBack(){
+        finish();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +82,9 @@ public class ChatActivity extends AppCompatActivity {
         user_chat = intent.getStringExtra("user_chat");
 
         ButterKnife.bind(this);
+
+
+        headUser.setText(user_chat);
 
         this.dbReference = FirebaseDatabase.getInstance().getReference();
 
@@ -170,7 +187,4 @@ public class ChatActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-    private void sendMessage(String message, String chat_id){
-
-    }
 }
