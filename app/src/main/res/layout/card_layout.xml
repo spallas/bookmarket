@@ -73,17 +73,6 @@
             card:layout_constraintEnd_toEndOf="parent"
             card:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:drawableEnd="@drawable/ic_baseline_remove_red_eye"
-            android:text="23"
-            card:layout_constraintBottom_toBottomOf="@+id/card_img"
-            card:layout_constraintEnd_toStartOf="@+id/card_img" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
 import com.gnufsociety.bookmarket.models.UserComplete;
@@ -35,6 +36,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Multipart;
 
 public class CompleteActivity extends AppCompatActivity {
 
@@ -42,6 +44,8 @@ public class CompleteActivity extends AppCompatActivity {
     private BookmarketEndpoints apiEndpoints;
 
     private Uri avatar = null;
+
+    private boolean edit;
 
     private static final int REQUEST_GET_SINGLE_FILE = 0;
 
@@ -78,18 +82,23 @@ public class CompleteActivity extends AppCompatActivity {
             Toast.makeText(CompleteActivity.this, "Username non può essere vuoto", Toast.LENGTH_SHORT).show();
         } else {
 
-            File file = new File(avatar.getPath());
 
-            RequestBody requestAvatar = RequestBody.create(MediaType.parse("image/*"), file);
-
-
-            MultipartBody.Part fileAvatar = MultipartBody.Part.createFormData("user[avatar]", file.getName(), requestAvatar);
-
+            Call<UserComplete> call;
             RequestBody requestUsername = RequestBody.create(MediaType.parse("text/plain"), username);
 
+            if (avatar != null) {
+                File file = new File(avatar.getPath());
+                RequestBody requestAvatar = RequestBody.create(MediaType.parse("image/*"), file);
+                MultipartBody.Part fileAvatar = MultipartBody.Part.createFormData("user[avatar]", file.getName(), requestAvatar);
+                call = apiEndpoints.completeProfile(fileAvatar, requestUsername);
+            } else {
+                call = apiEndpoints.completeProfile(requestUsername);
+            }
 
             Toast.makeText(this, "Stiamo creando il tuo profilo!", Toast.LENGTH_SHORT).show();
-            apiEndpoints.completeProfile(fileAvatar, requestUsername).enqueue(new Callback<UserComplete>() {
+
+
+            call.enqueue(new Callback<UserComplete>() {
                 @Override
                 public void onResponse(Call<UserComplete> call, Response<UserComplete> response) {
                     if (response.code() == 200) {
@@ -115,8 +124,20 @@ public class CompleteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete);
 
+
         apiEndpoints = Api.getInstance().getApiEndpoint();
         ButterKnife.bind(this);
+
+        this.edit = getIntent().getBooleanExtra("edit", false);
+        if (edit) {
+            String u = getIntent().getStringExtra("username");
+            String a = getIntent().getStringExtra("avatar");
+
+            Glide.with(this)
+                    .load(a)
+                    .into(profileImage);
+            userEdit.setText(u);
+        }
     }
 
 
@@ -135,6 +156,7 @@ public class CompleteActivity extends AppCompatActivity {
                         File f = new File(path);
                         this.avatar = Uri.fromFile(f);
                     }
+                    break;
             }
         }
     }
@@ -166,6 +188,7 @@ public class CompleteActivity extends AppCompatActivity {
                     Log.d("PERMISSIONS", "READ PERMISSION GRANTED");
                     onAvatarClick();
                 }
+                break;
         }
     }
 }

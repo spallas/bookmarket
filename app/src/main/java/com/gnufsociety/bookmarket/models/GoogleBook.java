@@ -10,6 +10,12 @@ public class GoogleBook {
 
 
 
+    public String link() {
+        if (volumeInfo == null)
+            return "";
+        return volumeInfo.getPreviewLink() == null ? "" : volumeInfo.getPreviewLink();
+    }
+
     public String title(){
         String title = volumeInfo.getTitle();
         return title != null? title : "";
@@ -61,10 +67,21 @@ public class GoogleBook {
         this.volumeInfo = volumeInfo;
     }
 
+
+
     public static class VolumeInfo {
         private String title;
         private List<String> authors;
         private ImageLinks imageLinks;
+        private String previewLink;
+
+        public String getPreviewLink() {
+            return previewLink;
+        }
+
+        public void setPreviewLink(String previewLink) {
+            this.previewLink = previewLink;
+        }
 
         public ImageLinks getImageLinks() {
             return imageLinks;

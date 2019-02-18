@@ -134,6 +134,7 @@ public class AdActivity extends AppCompatActivity {
                         GoogleBookAdapter adapter = new GoogleBookAdapter(response.body().getItems());
 
                         booksRecycler.setAdapter(adapter);
+                        break;
 
                 }
             }

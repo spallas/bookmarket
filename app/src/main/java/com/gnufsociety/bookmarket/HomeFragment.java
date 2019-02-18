@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
     void startSellActivity() {
 
         Intent intent = new Intent(getActivity(), SellActivity.class);
-        startActivity(intent);
+        getActivity().startActivityForResult(intent, 99);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

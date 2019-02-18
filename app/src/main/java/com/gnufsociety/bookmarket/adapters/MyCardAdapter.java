@@ -1,6 +1,8 @@
 package com.gnufsociety.bookmarket.adapters;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.gnufsociety.bookmarket.AdActivity;
 import com.gnufsociety.bookmarket.ChatActivity;
+import com.gnufsociety.bookmarket.HomeActivity;
 import com.gnufsociety.bookmarket.MyAdActivity;
 import com.gnufsociety.bookmarket.R;
 import com.gnufsociety.bookmarket.models.Ad;
@@ -20,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +35,7 @@ import butterknife.OnClick;
 public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHolder> {
 
     public List<Ad> list;
+    public Context context;
     public MyCardAdapter(List<Ad> list) {
         this.list = list;
     }
@@ -40,6 +45,7 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,
                 parent,
                 false);
+        context = parent.getContext();
         return new CardViewHolder(view);
     }
 
@@ -49,7 +55,7 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
 
         holder.title.setText(ad.getBook().getTitle());
         holder.author.setText(ad.getBook().getAuthor());
-        holder.price.setText(ad.getPrice());
+        holder.price.setText(ad.getPrice()+ " €");
 
         Log.e("PROFILE IMAGE URL", ad.getImgUrl());
         Glide.with(holder.title.getContext())
@@ -87,7 +93,7 @@ public class MyCardAdapter extends RecyclerView.Adapter<MyCardAdapter.CardViewHo
             bundle.putSerializable("ad", list.get(getAdapterPosition()));
             Intent i = new Intent(view.getContext(), target);
             i.putExtras(bundle);
-            view.getContext().startActivity(i);
+            ((Activity) context).startActivityForResult(i, 99);
         }
     }
 }

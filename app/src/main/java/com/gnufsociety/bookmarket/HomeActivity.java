@@ -129,13 +129,15 @@ public class HomeActivity extends FragmentActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        progressBar.setVisibility(View.VISIBLE);
+        //progressBar.setVisibility(View.VISIBLE);
 
         if (requestCode == RC_SIGN_IN){
-            if (resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK)
+            {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 //setupFCM(user.getUid());
                 BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
+                progressBar.setVisibility(View.VISIBLE);
                 apiEndpoint.existUser().enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
@@ -150,12 +152,15 @@ public class HomeActivity extends FragmentActivity
                         Log.e("FireBaseLogin",t.getMessage());
                     }
                 });
+            } else if (resultCode == RESULT_CANCELED) {
+                createSignInIntent();
             }
+        } else if (requestCode == 99){
+            FragmentManager fm = getSupportFragmentManager();
 
-            // TODO check if the user exists on rails backend, if yes jump to home activity, otherwise remain on complete profile
-
-        } else if (resultCode == RESULT_CANCELED) {
-            createSignInIntent();
+//if you added fragment via layout xml
+            ProfileFragment fragment = (ProfileFragment) fm.findFragmentByTag("android:switcher:" + R.id.viewpager + ":0");
+            fragment.loadMyAds();
         } else {
             // HANDLE ERRORS HERE???? che ce frega a noi!
         }

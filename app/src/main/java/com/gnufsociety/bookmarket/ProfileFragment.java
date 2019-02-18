@@ -46,6 +46,8 @@ public class ProfileFragment extends Fragment {
 
     private BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
     private MyCardAdapter adapter;
+    private String myUsername;
+    private String myAvatar;
 
     @BindView(R.id.logout_btn) ImageButton logoutBtn;
     @BindView(R.id.profile_ads) RecyclerView myAdsRecycler;
@@ -88,6 +90,9 @@ public class ProfileFragment extends Fragment {
                 String avatar = (String) dataSnapshot.child("avatar").getValue();
                 String username = (String) dataSnapshot.child("username").getValue();
 
+                myAvatar = avatar;
+                myUsername = username;
+
                 usernameTxt.setText(username);
                 Glide.with(getContext())
                         .load(avatar)
@@ -100,6 +105,12 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+       loadMyAds();
+
+        return rootView;
+    }
+
+    public void loadMyAds(){
         apiEndpoint.getMyAds().enqueue(new Callback<List<Ad>>() {
             @Override
             public void onResponse(Call<List<Ad>> call, Response<List<Ad>> response) {
@@ -123,8 +134,6 @@ public class ProfileFragment extends Fragment {
                         .show();
             }
         });
-
-        return rootView;
     }
 
 
@@ -136,6 +145,14 @@ public class ProfileFragment extends Fragment {
         startActivity(intent);
     }
 
+    @OnClick(R.id.edit_btn)
+    void editUser(){
+        Intent i = new Intent(getContext(), CompleteActivity.class);
+        i.putExtra("edit", true);
+        i.putExtra("username", myUsername);
+        i.putExtra("avatar", myAvatar);
+        startActivity(i);
+    }
     @Override
     public void onDetach() {
         super.onDetach();

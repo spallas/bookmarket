@@ -1,5 +1,7 @@
 package com.gnufsociety.bookmarket.api;
 
+import android.content.Intent;
+
 import com.gnufsociety.bookmarket.models.Ad;
 import com.gnufsociety.bookmarket.models.UserComplete;
 
@@ -30,9 +32,13 @@ public interface BookmarketEndpoints {
             @Part() MultipartBody.Part avatar,
             @Part("user[username]") RequestBody username
             );
-    @GET("ad/{id}")
-    Call<Ad> getAd(@Path("id") String adID);
 
+
+    @Multipart
+    @POST("users/complete")
+    Call<UserComplete> completeProfile(
+            @Part("user[username]") RequestBody username
+    );
     @Multipart
     @POST("ads/")
     Call<Void> createAd(@Part("book[title]") RequestBody title,
@@ -42,8 +48,8 @@ public interface BookmarketEndpoints {
                         @Part("price") RequestBody price,
                         @Part() MultipartBody.Part image);
 
-    @DELETE("ad/{id}")
-    Call<Void> deleteAd(@Path("id") String adID);
+    @DELETE("ads/{id}")
+    Call<Void> deleteAd(@Path("id") Integer adID);
 
     @GET("ads/")
     Call<List<Ad>> getMyAds();

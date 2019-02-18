@@ -67,8 +67,8 @@ public class SellActivity extends AppCompatActivity {
 
     @OnClick(R.id.add_ad_btn)
     public void postNewAd() {
-        File image = compressImage();
         if (checkValue()) {
+            File image = compressImage();
             Book book = new Book(editTitle.getText().toString(),
                     editAuthor.getText().toString(),
                     editSubj.getText().toString());
@@ -112,7 +112,8 @@ public class SellActivity extends AppCompatActivity {
         boolean allSetUp = true;
         if (editTitle.getText().toString().trim().length() == 0 ||
             editAuthor.getText().toString().trim().length() == 0 ||
-            editDesc.getText().toString().trim().length() == 0
+            editDesc.getText().toString().trim().length() == 0 ||
+                uriImage == null
             )
         {
             allSetUp = false;

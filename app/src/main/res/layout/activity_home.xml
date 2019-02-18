@@ -41,10 +41,10 @@
         android:paddingTop="4dp"
         android:paddingBottom="24dp"
         app:ipi_animationDuration="320"
-        app:ipi_currentPageIndicatorColor="@android:color/black"
+        app:ipi_currentPageIndicatorColor="@color/colorPrimaryDark"
+        app:ipi_pageIndicatorColor="@android:color/darker_gray"
         app:ipi_dotDiameter="8dp"
         app:ipi_dotGap="8dp"
-        app:ipi_pageIndicatorColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
