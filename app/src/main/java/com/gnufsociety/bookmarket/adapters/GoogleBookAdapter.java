@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.gnufsociety.bookmarket.R;
 import com.gnufsociety.bookmarket.models.GoogleBook;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -25,7 +26,7 @@ public class GoogleBookAdapter extends RecyclerView.Adapter<GoogleBookAdapter.Go
     private List<GoogleBook> books;
 
     public GoogleBookAdapter(List<GoogleBook> books) {
-        this.books = books;
+        this.books = books != null? books : new ArrayList<>();
     }
 
 

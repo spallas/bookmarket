@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.gnufsociety.bookmarket.adapters.FullImagePopUp;
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
 import com.gnufsociety.bookmarket.models.Ad;
@@ -31,6 +32,7 @@ public class MyAdActivity extends AppCompatActivity {
     @BindView(R.id.my_ad_desc) TextView adDesc;
     Ad ad;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,11 @@ public class MyAdActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(ad.getImgUrl())
                 .into(adImg);
+    }
+
+    @OnClick(R.id.my_ad_img)
+    void goFullscreen(){
+        new FullImagePopUp(this, ad.getImgUrl(),adImg);
     }
 
     @OnClick(R.id.ad_delete_btn)

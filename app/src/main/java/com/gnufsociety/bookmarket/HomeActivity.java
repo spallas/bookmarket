@@ -229,4 +229,32 @@ public class HomeActivity extends FragmentActivity
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        boolean launchedFromHistory = intent != null && (intent.getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0;
+        if (launchedFromHistory) return;
+        if (b != null){
+            String u = b.getString("username");
+            String a = b.getString("avatar");
+            String ci = b.getString("chat_id");
+
+            boolean valid = u != null && a != null && ci != null;
+            if (!valid) return;
+            for( String arg: b.keySet()){
+                getIntent().removeExtra(arg);
+            }
+
+            Intent i = new Intent(this, ChatActivity.class);
+            i.putExtra("user_chat", u);
+            i.putExtra("avatar_url", a);
+            i.putExtra("chat_id", ci);
+            startActivity(i);
+        }
+
+
+    }
 }

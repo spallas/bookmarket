@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gnufsociety.bookmarket.adapters.FullImagePopUp;
 import com.gnufsociety.bookmarket.adapters.GoogleBookAdapter;
 import com.gnufsociety.bookmarket.api.GoogleApi;
 import com.gnufsociety.bookmarket.api.GoogleBooksEndpoints;
@@ -72,6 +73,11 @@ public class AdActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(ad.getUser().getAvatar_url())
                 .into(adSellerPic);
+    }
+
+    @OnClick(R.id.ad_img)
+    void goFullscreen(){
+        new FullImagePopUp(this, ad.getImgUrl(),adImg);
     }
 
     @OnClick(R.id.ad_contact_btn)
