@@ -1,5 +1,6 @@
 package com.gnufsociety.bookmarket;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -139,10 +142,23 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.logout_btn)
     public void logout() {
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(getContext(), HomeActivity.class);
-        getActivity().finish();
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Log Out");
+        builder.setMessage("Vuoi effettuare il log out?");
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                getActivity().finish();
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(getContext(),R.color.colorAccent));
+        dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
     }
 
     @OnClick(R.id.edit_btn)

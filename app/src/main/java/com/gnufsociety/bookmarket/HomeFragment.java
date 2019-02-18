@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
     void startSellActivity() {
 
         Intent intent = new Intent(getActivity(), SellActivity.class);
-        getActivity().startActivityForResult(intent, 99);
+        getActivity().startActivityForResult(intent, HomeActivity.RELOAD_PROFILE);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

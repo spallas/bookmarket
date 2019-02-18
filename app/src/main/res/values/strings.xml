@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">BookMarket</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password" translatable="false">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -12,13 +12,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="search_hint">Search book...</string>
-    <string name="app_label">BookMarket</string>
+    <string name="search_hint">Search book…</string>
+    <string name="app_label" translatable="false">BookMarket</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
-    <string name="large_text">
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_scrolling" translatable="false">ScrollingActivity</string>
+    <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -109,9 +109,28 @@
     </string>
     <string name="action_settings">Settings</string>
 
-    <string name="complete_profile">Ci servono le ultime informazioni su di te, scegli un username obbligatorio
-        e sarai pronto a immergerti nel fantastico mondo di BookMarket</string>
-    <string name="welcome"> Benvenuto!</string>
-    <string name="username">Username</string>
-    <string name="save">Salva</string>
+    <string name="complete_profile">We need the last information about you. Choose an image and a username and get ready to start using our application</string>
+    <string name="welcome"> Welcome!</string>
+    <string name="username" translatable="false">Username</string>
+    <string name="save">Save</string>
+
+    <string name="facebook_application_id"
+        translatable="false">1778060018891914</string>
+    <string name="contact_seller">Contact</string>
+    <string name="see_also_on">See it also on:</string>
+    <string name="send_msg">Send</string>
+    <string name="send_a_message_hint">Send a message…</string>
+    <string name="sold_ad">Sold</string>
+    <string name="you_searched_for">You searched for:</string>
+    <string name="title">Title…</string>
+    <string name="author">Author…</string>
+    <string name="course">Course…</string>
+    <string name="max_price">Max price…</string>
+    <string name="search">Search</string>
+    <string name="description">Description…</string>
+    <string name="add">Add</string>
+    <string name="price_euro">Price: €</string>
+    <string name="create_ad_title">Create Your Ad</string>
+    <string name="chats">Chats</string>
+    <string name="sell">Sell</string>
 </resources>

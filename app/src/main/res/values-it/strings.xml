@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BookMarket</string>
+    <string name="action_sign_in">Entra o registrati</string>
+    <string name="action_sign_in_short">Entra</string>
+    <string name="error_invalid_email">La tua email non è valida</string>
+    <string name="error_invalid_password">La password è troppo corta</string>
+    <string name="error_incorrect_password">La password è sbagliata</string>
+    <string name="error_field_required">Questo campo è richiesto</string>
+    <string name="permission_rationale">Autorizzare i permessi per i contatti è necessario per utilizare la mail</string>
+    <string name="search_hint">Cerca un libro</string>
+    <string name="complete_profile" translatable="false">Ci servono le ultime informazioni su di te, scegli un username obbligatorio e sarai pronto a immergerti nel fantastico mondo di BookMarket</string>
+    <string name="save">Salva</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="contact_seller">Contatta</string>
+    <string name="see_also_on">Cercalo su Google Book</string>
+    <string name="send_msg">Invia</string>
+    <string name="send_a_message_hint">Scrivi un messaggio…</string>
+    <string name="sold_ad">Venduto</string>
+    <string name="you_searched_for">Hai cercato:</string>
+    <string name="title">Titolo…</string>
+    <string name="author">Autore…</string>
+    <string name="course">Corso…</string>
+    <string name="max_price">Prezzo massimo…</string>
+    <string name="search">Cerca</string>
+    <string name="description">Descrizione…</string>
+    <string name="add">Aggiungi</string>
+    <string name="price_euro">Prezzo: €</string>
+    <string name="create_ad_title">Inserisci un Annuncio</string>
+    <string name="chats">Chats</string>
+    <string name="sell">Vendi</string>
+    <string name="welcome">Benvenuto!</string>
+</resources>

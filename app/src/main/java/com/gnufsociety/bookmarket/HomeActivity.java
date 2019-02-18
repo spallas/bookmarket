@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
 import com.firebase.ui.auth.AuthUI;
 import com.gnufsociety.bookmarket.api.Api;
 import com.gnufsociety.bookmarket.api.BookmarketEndpoints;
@@ -44,7 +45,7 @@ public class HomeActivity extends FragmentActivity
 {
 
     private static final int RC_SIGN_IN = 123;
-
+    public static final int RELOAD_PROFILE = 99;
     @BindView(R.id.viewpager)
     ViewPager viewPager;
     @BindView(R.id.indicator)
@@ -108,6 +109,7 @@ public class HomeActivity extends FragmentActivity
         // Choose authentication providers
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.FacebookBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
         // Create and launch sign-in intent
@@ -115,7 +117,8 @@ public class HomeActivity extends FragmentActivity
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
-                        .setLogo(R.drawable.ic_launcher_foreground)
+                        .setTheme(R.style.LoginTheme)
+                        .setLogo(R.drawable.logo)
                         .build(),
                 RC_SIGN_IN);
     }
@@ -134,10 +137,8 @@ public class HomeActivity extends FragmentActivity
         if (requestCode == RC_SIGN_IN){
             if (resultCode == RESULT_OK)
             {
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                //setupFCM(user.getUid());
-                BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
                 progressBar.setVisibility(View.VISIBLE);
+                BookmarketEndpoints apiEndpoint = Api.getInstance().getApiEndpoint();
                 apiEndpoint.existUser().enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
@@ -153,16 +154,14 @@ public class HomeActivity extends FragmentActivity
                     }
                 });
             } else if (resultCode == RESULT_CANCELED) {
-                createSignInIntent();
+                finishAndRemoveTask();
             }
-        } else if (requestCode == 99){
+        } else if (requestCode == RELOAD_PROFILE){
             FragmentManager fm = getSupportFragmentManager();
-
-//if you added fragment via layout xml
             ProfileFragment fragment = (ProfileFragment) fm.findFragmentByTag("android:switcher:" + R.id.viewpager + ":0");
             fragment.loadMyAds();
         } else {
-            // HANDLE ERRORS HERE???? che ce frega a noi!
+            Log.e("HomeActivity", "Richiesta non nota: "+requestCode);
         }
 
     }

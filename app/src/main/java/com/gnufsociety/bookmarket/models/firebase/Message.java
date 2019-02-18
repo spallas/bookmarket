@@ -57,6 +57,6 @@ public class Message {
         Calendar msgTime = Calendar.getInstance();
         msgTime.setTimeInMillis(getTimestamp());
 
-        return DateFormat.format("hh:mm", msgTime).toString();
+        return DateFormat.format("HH:mm", msgTime).toString();
     }
 }

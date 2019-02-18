@@ -25,7 +25,7 @@
         android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:padding="4dp"
-        android:text="Chats"
+        android:text="@string/chats"
         android:textAlignment="center"
         android:textColor="@color/buttonText"
         android:textSize="30sp"

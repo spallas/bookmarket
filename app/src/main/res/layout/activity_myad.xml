@@ -8,37 +8,29 @@
 
     <ImageView
         android:id="@+id/my_ad_img"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:scaleType="center"
-        app:layout_constraintBottom_toTopOf="@+id/my_guideline5"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:background="@android:color/darker_gray"
+        android:scaleType="fitCenter"
+        app:layout_constraintDimensionRatio=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:srcCompat="@drawable/prova" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/my_guideline5"
+    <TextView
+        android:id="@+id/my_ad_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
-
-        <TextView
-            android:id="@+id/my_ad_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-black"
-            android:text="TITLE"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/my_guideline5" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="TITLE"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_ad_img" />
 
         <TextView
             android:id="@+id/my_ad_author"
@@ -98,7 +90,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="Venduto"
+        android:text="@string/sold_ad"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
