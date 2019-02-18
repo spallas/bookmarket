@@ -25,7 +25,7 @@
         android:layout_marginEnd="8dp"
         android:elevation="9dp"
         android:text="BookMarket"
-        android:textColor="@android:color/black"
+        android:textColor="@color/buttonText"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:layout_height="47dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="128dp"
         android:background="#FFFFFF"
         android:elevation="8dp"
         android:iconifiedByDefault="false"
@@ -54,14 +54,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:elevation="8dp"
         android:fontFamily="sans-serif-medium"
         android:padding="10dp"
         android:text="SELL"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,6 +73,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60" />
+        app:layout_constraintGuide_percent="0.75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

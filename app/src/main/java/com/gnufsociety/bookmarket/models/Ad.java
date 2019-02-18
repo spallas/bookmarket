@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class Ad implements Serializable {
 
+    private Integer id;
     private String price, description, img_url;
     private Book book;
     private AdUser user;
@@ -35,5 +36,9 @@ public class Ad implements Serializable {
 
     public AdUser getUser() {
         return user;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }
